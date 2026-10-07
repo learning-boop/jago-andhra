@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ThumbsDown, ThumbsUp, X } from 'lucide-react';
+import { Check, ThumbsDown, ThumbsUp, X } from 'lucide-react';
 import { api } from '../services/api';
 import { useLang } from '../i18n/LanguageContext';
 
 const VOTED_KEY = 'jago-andhra-voted';
-const OPEN_DELAY_MS = 1800;
+const SCROLL_TRIGGER = 0.4; // open once the visitor has scrolled through 40% of the page
+const SHORT_PAGE_DELAY_MS = 12000; // pages too short to scroll: open after a while instead
 
 const store = {
   get: (s, k) => { try { return s.getItem(k); } catch { return null; } },
@@ -15,33 +16,47 @@ const store = {
 
 /**
  * "Do you support this movement?" thumbs-up / thumbs-down poll.
- * Pops up every time the website is opened. Visitors who already voted see their vote and the live results.
+ * Opens by itself once per site visit, after the visitor scrolls 40% of the page.
+ * A floating thumbs-up button stays on screen so the poll (or its results) is always one tap away.
  */
 export default function SupportPoll() {
   const { t, logo } = useLang();
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
+  const [autoShown, setAutoShown] = useState(false);
   const [status, setStatus] = useState('idle'); // idle | sending | done | error
-  const [myVote, setMyVote] = useState(null);
+  const [myVote, setMyVote] = useState(() => {
+    const v = store.get(localStorage, VOTED_KEY);
+    return v === 'up' || v === 'down' ? v : null;
+  });
   const [tally, setTally] = useState(null);
   const cardRef = useRef(null);
 
+  const openPoll = useCallback(async () => {
+    if (myVote && status !== 'done') {
+      try {
+        setTally(await api.getVotes());
+        setStatus('done');
+      } catch { /* show the question again */ }
+    }
+    setOpen(true);
+  }, [myVote, status]);
+
+  // Auto-open once per visit, when the visitor has scrolled far enough into the page
   useEffect(() => {
-    const previous = store.get(localStorage, VOTED_KEY);
-    let alive = true;
-    const id = setTimeout(async () => {
-      if (previous === 'up' || previous === 'down') {
-        try {
-          const result = await api.getVotes();
-          if (!alive) return;
-          setMyVote(previous);
-          setTally(result);
-          setStatus('done');
-        } catch { /* fall back to asking again */ }
-      }
-      if (alive) setOpen(true);
-    }, OPEN_DELAY_MS);
-    return () => { alive = false; clearTimeout(id); };
-  }, []);
+    if (autoShown) return;
+    const trigger = () => { setAutoShown(true); openPoll(); };
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - window.innerHeight;
+      if (scrollable > 0 && window.scrollY / scrollable >= SCROLL_TRIGGER) trigger();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    const id = setTimeout(() => {
+      if (document.documentElement.scrollHeight <= window.innerHeight * 1.3) trigger();
+    }, SHORT_PAGE_DELAY_MS);
+    return () => { window.removeEventListener('scroll', onScroll); clearTimeout(id); };
+  }, [autoShown, openPoll, pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -73,6 +88,28 @@ export default function SupportPoll() {
   const pct = (n) => (total ? Math.round((n / total) * 100) : 0);
 
   return (
+    <>
+    <AnimatePresence>
+      {!open && (
+        <motion.button type="button" onClick={openPoll} aria-label={myVote ? t('poll.results') : t('poll.fab')}
+          initial={{ opacity: 0, scale: 0.6, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.6 }}
+          transition={{ type: 'spring', stiffness: 320, damping: 22, delay: 0.3 }} whileHover={{ y: -3 }} whileTap={{ scale: 0.94 }}
+          className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full bg-brand-green py-2 pl-2 pr-2 text-white shadow-xl shadow-brand-green/30 ring-4 ring-white/80 sm:bottom-6 sm:right-6 sm:pr-5"
+          style={{ marginBottom: 'env(safe-area-inset-bottom)' }}>
+          <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white/15">
+            {!myVote && <span aria-hidden="true" className="absolute inset-0 rounded-full bg-white/40 animate-pulseRing" />}
+            <ThumbsUp size={20} aria-hidden="true" />
+            {myVote && (
+              <span aria-hidden="true" className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-white text-brand-green shadow">
+                <Check size={12} strokeWidth={3} />
+              </span>
+            )}
+          </span>
+          <span className="hidden text-sm font-bold sm:inline">{myVote ? t('poll.results') : t('poll.fab')}</span>
+        </motion.button>
+      )}
+    </AnimatePresence>
+
     <AnimatePresence>
       {open && (
         <motion.div className="fixed inset-0 z-[60] flex items-end justify-center p-3 sm:items-center sm:p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -133,6 +170,7 @@ export default function SupportPoll() {
         </motion.div>
       )}
     </AnimatePresence>
+    </>
   );
 }
 
