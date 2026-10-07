@@ -6,7 +6,7 @@ import { api } from '../services/api';
 import { useLang } from '../i18n/LanguageContext';
 
 const VOTED_KEY = 'jago-andhra-voted';
-const SCROLL_TRIGGER = 0.4; // open once the visitor has scrolled through 40% of the page
+const SCROLL_TRIGGER = 0.2; // open once the visitor has scrolled through 20% of the page
 const SHORT_PAGE_DELAY_MS = 12000; // pages too short to scroll: open after a while instead
 
 const store = {
@@ -16,7 +16,7 @@ const store = {
 
 /**
  * "Do you support this movement?" thumbs-up / thumbs-down poll.
- * Opens by itself once per site visit, after the visitor scrolls 40% of the page.
+ * Opens by itself once per site visit, after the visitor scrolls 20% of the page.
  * A floating thumbs-up button stays on screen so the poll (or its results) is always one tap away.
  */
 export default function SupportPoll() {
