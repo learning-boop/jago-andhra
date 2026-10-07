@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import SupportPoll from './components/SupportPoll';
 import Home from './pages/Home';
 import About from './pages/About';
 import Issue from './pages/Issue';
@@ -74,6 +75,7 @@ export default function App() {
         </motion.main>
       </AnimatePresence>
       <Footer />
+      <SupportPoll />
     </>
   );
 }

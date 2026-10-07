@@ -14,6 +14,8 @@
  *   GET  /districts.php         → District[]
  *   POST /members.php           → { ok: true, id }
  *   POST /contact.php           → { ok: true, id }
+ *   GET  /votes.php             → { up, down }
+ *   POST /votes.php  { vote }   → { up, down }   (vote: 'up' | 'down'; count one vote per visitor/IP)
  */
 import { events } from '../data/events';
 import { updates } from '../data/updates';
@@ -34,6 +36,7 @@ const endpoints = {
   districts: '/districts.php',
   members: '/members.php',
   contact: '/contact.php',
+  votes: '/votes.php',
 };
 
 const mock = { events, updates, documents, gallery, media, districts };
@@ -48,6 +51,12 @@ async function request(path, options = {}) {
     throw new Error(`API ${res.status}: ${text || res.statusText}`);
   }
   return res.json();
+}
+
+/* Mock-mode vote tally, kept in this browser only until the PHP API is connected. */
+const VOTES_KEY = 'jago-andhra-mock-votes';
+function mockVotes() {
+  try { return { up: 0, down: 0, ...JSON.parse(localStorage.getItem(VOTES_KEY) || '{}') }; } catch { return { up: 0, down: 0 }; }
 }
 
 const simulate = (data, ms = 120) => new Promise((r) => setTimeout(() => r(structuredClone(data)), ms));
@@ -75,6 +84,17 @@ export const api = {
     USE_API
       ? request(endpoints.contact, { method: 'POST', body: JSON.stringify(msg) })
       : simulate({ ok: true, id: Date.now() }, 600),
+
+  getVotes: () => (USE_API ? request(endpoints.votes) : simulate(mockVotes())),
+
+  /** @param {'up'|'down'} vote */
+  castVote: (vote) => {
+    if (USE_API) return request(endpoints.votes, { method: 'POST', body: JSON.stringify({ vote }) });
+    const tally = mockVotes();
+    tally[vote] += 1;
+    try { localStorage.setItem(VOTES_KEY, JSON.stringify(tally)); } catch { /* storage unavailable */ }
+    return simulate(tally, 400);
+  },
 };
 
 /**
@@ -88,4 +108,5 @@ export const api = {
  *               (map shapes/coords are static in src/data/apMap.js, keyed by the same id)
  * Member       { fullName, mobile, email, district, message, consent }
  * ContactMsg   { name, email, phone, message }
+ * Votes        { up: number, down: number }
  */
