@@ -2,7 +2,14 @@ import { motion } from 'framer-motion';
 import { AlertCircle } from 'lucide-react';
 import { Icon, Reveal, SectionHeader, PositionTag } from './ui';
 import { orderCards } from '../data/site';
+import { districts, multiZoneOf, romanZone } from '../data/districts';
 import { useLang } from '../i18n/LanguageContext';
+
+// Schedule to the Presidential Order 2025, grouped Multi-Zone → Zone → districts.
+const schedule = [1, 2].map((mz) => ({
+  mz,
+  zones: [1, 2, 3, 4, 5, 6].filter((z) => multiZoneOf(z) === mz).map((z) => ({ z, districts: districts.filter((d) => d.zone === z) })),
+}));
 
 export default function Order2025() {
   const { t, tr } = useLang();
@@ -35,6 +42,31 @@ export default function Order2025() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-14">
+          <div className="flex flex-wrap items-center gap-3"><h3 className="font-display text-2xl font-extrabold text-navy sm:text-3xl">{t('order.scheduleTitle')}</h3><PositionTag kind="fact" /></div>
+          <p className="mt-2 text-sm text-navy/60">{t('order.scheduleText')}</p>
+          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+            {schedule.map(({ mz, zones }) => (
+              <div key={mz} className="card overflow-hidden">
+                <div className="bg-navy px-6 py-3 font-display text-sm font-extrabold uppercase tracking-widest text-white">{t('order.multiZone')} {romanZone(mz)}</div>
+                <ul className="divide-y divide-navy/10">
+                  {zones.map(({ z, districts: ds }) => (
+                    <li key={z} className="grid gap-2 px-6 py-4 sm:grid-cols-[110px_1fr] sm:gap-4">
+                      <div>
+                        <span className="font-display text-base font-extrabold text-brand-orange">{t('order.zone')} {romanZone(z)}</span>
+                        <span className="block text-[11px] text-navy/50">{t('order.districtsCount')(ds.length)}</span>
+                      </div>
+                      <ul className="flex flex-wrap gap-1.5">
+                        {ds.map((d) => <li key={d.id} className="rounded-full bg-navy-50 px-2.5 py-1 text-xs font-semibold text-navy">{tr(d.name)}</li>)}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Reveal>
 
         <Reveal delay={2} className="mt-10 flex items-start gap-3 rounded-xl border border-brand-orange/30 bg-brand-orange/5 p-5 text-sm text-navy/75">
           <AlertCircle size={18} className="mt-0.5 shrink-0 text-brand-orange" aria-hidden="true" />

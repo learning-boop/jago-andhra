@@ -4,7 +4,7 @@ import { CalendarDays, Mail, MapPin, Phone, User } from 'lucide-react';
 import { Reveal, SectionHeader, Spinner, formatDate, PositionTag } from './ui';
 import { useFetch } from '../hooks/useFetch';
 import { api } from '../services/api';
-import { regions } from '../data/districts';
+import { multiZoneOf, regions, romanZone } from '../data/districts';
 import { apDistrictShapes, apOutlinePath, AP_VIEWBOX } from '../data/apMap';
 import { useLang } from '../i18n/LanguageContext';
 
@@ -107,6 +107,7 @@ export default function DistrictMap() {
                   <motion.div key={active.id} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.3 }}>
                     <span className="eyebrow text-brand-orange">{tr(regions[active.region])}</span>
                     <h3 className="mt-3 font-display text-3xl font-extrabold">{tr(active.name)}</h3>
+                    {active.zone && <p className="mt-2 text-sm font-semibold text-white/60">{t('map.zone')} {romanZone(active.zone)} · {t('map.multiZone')} {romanZone(multiZoneOf(active.zone))}</p>}
                     <div className="mt-6 grid grid-cols-2 gap-4">
                       <div className="rounded-xl border border-white/10 bg-white/5 p-4">
                         <span className="text-[11px] font-bold uppercase tracking-wider text-white/50">{t('map.programmes')}</span>
