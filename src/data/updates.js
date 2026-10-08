@@ -9,6 +9,13 @@ export const updateCategories = [
   { id: 'event', en: 'Event Update', te: 'కార్యక్రమ అప్‌డేట్' },
 ];
 
+/** True when a post has a real article body (placeholder bodies are wrapped in [brackets]). */
+export function hasArticle(u) {
+  const body = u.body?.en ?? u.body;
+  const first = (Array.isArray(body) ? body[0] : body)?.trim();
+  return Boolean(first) && !first.startsWith('[');
+}
+
 export const updates = [
   {
     id: 1, slug: 'campaign-launch-statement', categoryId: 'press', date: '2026-10-01',

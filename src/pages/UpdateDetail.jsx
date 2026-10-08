@@ -5,7 +5,7 @@ import PageHeader from '../components/PageHeader';
 import { Reveal, Spinner, formatDate, catLabel } from '../components/ui';
 import { useFetch } from '../hooks/useFetch';
 import { api } from '../services/api';
-import { updateCategories } from '../data/updates';
+import { hasArticle, updateCategories } from '../data/updates';
 import { useLang } from '../i18n/LanguageContext';
 import NotFound from './NotFound';
 
@@ -35,11 +35,11 @@ export default function UpdateDetail() {
   const post = (data || []).find((u) => u.slug === slug);
 
   useEffect(() => {
-    if (post) document.title = `${tr(post.title)} | ${t('brand.name')}`;
+    if (post && hasArticle(post)) document.title = `${tr(post.title)} | ${t('brand.name')}`;
   }, [post, lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <><PageHeader eyebrow={t('updates.eyebrow')} title={t('updates.title')} /><Spinner /></>;
-  if (!post) return <NotFound />;
+  if (!post || !hasArticle(post)) return <NotFound />;
 
   return (
     <>
