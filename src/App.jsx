@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SupportPoll from './components/SupportPoll';
+import { JoinProvider } from './components/JoinModal';
 import Home from './pages/Home';
 import About from './pages/About';
 import Issue from './pages/Issue';
@@ -51,7 +52,7 @@ const pageMotion = {
 export default function App() {
   const location = useLocation();
   return (
-    <>
+    <JoinProvider>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand-orange focus:px-4 focus:py-2 focus:text-white">
         Skip to content
       </a>
@@ -76,6 +77,6 @@ export default function App() {
       </AnimatePresence>
       <Footer />
       <SupportPoll />
-    </>
+    </JoinProvider>
   );
 }

@@ -4,12 +4,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { navLinks } from '../data/site';
 import { useLang } from '../i18n/LanguageContext';
 import LanguageToggle from './LanguageToggle';
+import { useJoin } from './JoinModal';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { pathname, hash } = useLocation();
   const { t, logo, isTe } = useLang();
+  const { openJoin } = useJoin();
   const onHome = pathname === '/';
 
   useEffect(() => {
@@ -32,13 +34,13 @@ export default function Navbar() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${solid ? 'bg-navy/95 shadow-glow backdrop-blur-md' : 'bg-transparent'}`}>
       <div className={`container-x flex items-center justify-between gap-3 transition-all 2xl:max-w-[1440px] duration-500 ${solid ? 'h-[70px]' : 'h-[88px]'}`}>
-        <Link to="/" className="flex shrink-0 items-center gap-3" aria-label={`${t('brand.name')} — ${t('nav.home')}`}>
+        <Link to="/" className="flex shrink-0 items-center gap-2.5 sm:gap-3 lg:gap-2 2xl:gap-3" aria-label={`${t('brand.name')} — ${t('nav.home')}`}>
           <img src={logo} alt={t('hero.logoAlt')} className={`rounded-full bg-white transition-all duration-500 ${solid ? 'h-11 w-11' : 'h-14 w-14'}`} width="56" height="56" />
-          <span className="hidden sm:block lg:hidden 2xl:block">
-            <span className={`block font-display text-lg font-extrabold leading-none tracking-tight text-white ${isTe ? 'font-telugu' : ''}`}>
+          <span className="block">
+            <span className={`block whitespace-nowrap font-display text-base font-extrabold sm:text-lg lg:text-[15px] 2xl:text-lg leading-none tracking-tight text-white ${isTe ? 'font-telugu' : ''}`}>
               {t('brand.nameTop')} <span className="text-brand-orange">{t('brand.nameBottom')}</span>
             </span>
-            <span className={`mt-0.5 block text-[10px] font-medium uppercase tracking-[0.2em] text-white/70 ${isTe ? 'font-telugu tracking-normal' : ''}`}>{t('brand.sub')}</span>
+            <span className={`mt-0.5 hidden text-[10px] sm:block lg:hidden 2xl:block font-medium uppercase tracking-[0.2em] text-white/70 ${isTe ? 'font-telugu tracking-normal' : ''}`}>{t('brand.sub')}</span>
           </span>
         </Link>
 
@@ -46,7 +48,7 @@ export default function Navbar() {
           <ul className="flex items-center gap-0.5">
             {navLinks.map((l) => (
               <li key={l.to}>
-                <NavLink to={l.to} className={`relative whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-semibold tracking-wide transition-colors xl:px-3 ${isActive(l.to) ? 'text-brand-orange' : 'text-white/85 hover:text-white'}`}>
+                <NavLink to={l.to} className={`relative whitespace-nowrap rounded-full px-1.5 py-2 text-[13px] font-semibold tracking-wide transition-colors xl:px-2.5 2xl:px-3 ${isActive(l.to) ? 'text-brand-orange' : 'text-white/85 hover:text-white'}`}>
                   {t(`nav.${l.key}`)}
                   {isActive(l.to) && <motion.span layoutId="nav-dot" className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-brand-orange" />}
                 </NavLink>
@@ -57,7 +59,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <LanguageToggle tone="light" />
-          <Link to="/#join" className="btn-primary hidden whitespace-nowrap !px-5 !py-2.5 !text-xs xl:inline-flex">{t('nav.join')}</Link>
+          <button type="button" onClick={openJoin} className="btn-primary hidden whitespace-nowrap !px-5 !py-2.5 !text-xs xl:inline-flex">{t('nav.join')}</button>
           <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
             className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/20 text-white lg:hidden">
             <span className="relative block h-4 w-5">
@@ -83,7 +85,7 @@ export default function Navbar() {
                   </motion.li>
                 ))}
               </ul>
-              <Link to="/#join" className="btn-primary mt-5 w-full">{t('nav.join')}</Link>
+              <button type="button" onClick={() => { setOpen(false); openJoin(); }} className="btn-primary mt-5 w-full">{t('nav.join')}</button>
             </nav>
           </motion.div>
         )}

@@ -73,7 +73,7 @@ export const api = {
   getMedia: () => list('media'),
   getDistricts: () => list('districts'),
 
-  /** @param {{fullName:string, mobile:string, email:string, district:string, message?:string, consent:boolean}} member */
+  /** @param {{fullName:string, mobile:string, email:string, age:number, profession:string, district:string, address:string, message?:string, consent:boolean}} member */
   joinMovement: (member) =>
     USE_API
       ? request(endpoints.members, { method: 'POST', body: JSON.stringify(member) })

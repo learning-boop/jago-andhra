@@ -5,6 +5,7 @@ import { ChevronDown } from 'lucide-react';
 import { apOutlinePath, AP_VIEWBOX } from '../data/apMap';
 import { useLang } from '../i18n/LanguageContext';
 import HeroLogo from './HeroLogo';
+import { useJoin } from './JoinModal';
 
 const textReveal = {
   hidden: { opacity: 0, y: 40 },
@@ -13,6 +14,7 @@ const textReveal = {
 
 export default function Hero() {
   const { t, isTe, lang } = useLang();
+  const { openJoin } = useJoin();
   const particles = useMemo(
     () => Array.from({ length: 22 }, (_, i) => ({
       id: i, left: `${(i * 37) % 100}%`, top: `${(i * 53) % 100}%`, size: 2 + (i % 3), dur: 10 + (i % 6) * 2, delay: (i % 7) * -1.5,
@@ -57,7 +59,7 @@ export default function Hero() {
 
           <motion.div variants={textReveal} custom={4} initial="hidden" animate="show" className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Link to="/issue" className="btn-orange">{t('hero.know')}</Link>
-            <Link to="/#join" className="btn-outline-light">{t('hero.join')}</Link>
+            <button type="button" onClick={openJoin} className="btn-outline-light">{t('hero.join')}</button>
           </motion.div>
         </div>
 

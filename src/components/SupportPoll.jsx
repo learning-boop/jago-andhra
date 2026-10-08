@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Check, ThumbsDown, ThumbsUp, X } from 'lucide-react';
 import { api } from '../services/api';
 import { useLang } from '../i18n/LanguageContext';
+import { useJoin } from './JoinModal';
 
 const VOTED_KEY = 'jago-andhra-voted';
 const SCROLL_TRIGGER = 0.2; // open once the visitor has scrolled through 20% of the page
@@ -21,6 +22,7 @@ const store = {
  */
 export default function SupportPoll() {
   const { t, logo } = useLang();
+  const { openJoin } = useJoin();
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [autoShown, setAutoShown] = useState(false);
@@ -159,7 +161,7 @@ export default function SupportPoll() {
                     </div>
                     <p className="mt-2 text-right text-xs text-navy/50">{t('poll.votes')(total)}</p>
                     <div className="mt-6 flex flex-col gap-2 sm:flex-row">
-                      <Link to="/#join" onClick={() => setOpen(false)} className="btn-primary whitespace-nowrap sm:flex-[1.6]">{t('poll.join')}</Link>
+                      <button type="button" onClick={() => { setOpen(false); openJoin(); }} className="btn-primary whitespace-nowrap sm:flex-[1.6]">{t('poll.join')}</button>
                       <button type="button" onClick={() => setOpen(false)} className="btn flex-1 text-navy/60 hover:text-navy">{t('poll.later')}</button>
                     </div>
                   </motion.div>
