@@ -40,7 +40,7 @@ export default function Navbar() {
             <span className={`block whitespace-nowrap font-display text-base font-extrabold sm:text-lg lg:text-[15px] 2xl:text-lg leading-none tracking-tight text-white ${isTe ? 'font-telugu' : ''}`}>
               {t('brand.nameTop')} <span className="text-brand-orange">{t('brand.nameBottom')}</span>
             </span>
-            <span className={`mt-0.5 hidden text-[10px] sm:block lg:hidden 2xl:block font-medium uppercase tracking-[0.2em] text-white/70 ${isTe ? 'font-telugu tracking-normal' : ''}`}>{t('brand.sub')}</span>
+            <span className={`mt-1 block whitespace-nowrap font-semibold leading-none text-white/80 ${isTe ? 'font-telugu text-[10px]' : 'text-[11px] tracking-wide'}`}>{t('brand.slogan1')} <span className={`text-brand-orange ${isTe ? 'lg:mt-0.5 lg:block xl:mt-0 xl:inline' : ''}`}>{t('brand.slogan2')}</span></span>
           </span>
         </Link>
 

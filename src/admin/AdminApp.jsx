@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FileText, CalendarDays, KeyRound, LogOut, Mail, Newspaper, ThumbsUp, Users } from 'lucide-react';
+import { FileText, CalendarDays, Images, KeyRound, LogOut, Mail, MessageSquare, Newspaper, ThumbsUp, Users } from 'lucide-react';
 import logo from '../assets/logo.webp';
 import { adminApi, backendConnected, session } from './adminApi';
 import { Members, Messages, Poll } from './Inbox';
 import ContentManager from './ContentManager';
+import GalleryManager from './GalleryManager';
+import CommentsManager from './CommentsManager';
 import { Modal } from './AdminUi';
 
 const tabs = [
   { id: 'members', label: 'Join submissions', icon: Users, el: <Members /> },
   { id: 'messages', label: 'Messages', icon: Mail, el: <Messages /> },
+  { id: 'comments', label: 'Comments', icon: MessageSquare, el: null }, // rendered in Dashboard (needs the pending badge)
   { id: 'poll', label: 'Poll', icon: ThumbsUp, el: <Poll /> },
   { id: 'update', label: 'News', icon: Newspaper, el: <ContentManager type="update" /> },
   { id: 'event', label: 'Events', icon: CalendarDays, el: <ContentManager type="event" /> },
   { id: 'document', label: 'Documents', icon: FileText, el: <ContentManager type="document" /> },
+  { id: 'gallery', label: 'Gallery', icon: Images, el: <GalleryManager /> },
 ];
 
 /** Admin area at /admin — rendered without the public site's navbar, footer and poll. */
@@ -102,7 +106,13 @@ function Login({ onSignedIn }) {
 function Dashboard({ email, onSignOut }) {
   const [tab, setTab] = useState('members');
   const [pwOpen, setPwOpen] = useState(false);
+  const [pendingComments, setPendingComments] = useState(0);
   const current = tabs.find((t) => t.id === tab);
+
+  // Badge on the Comments tab: how many comments are waiting for approval
+  useEffect(() => {
+    adminApi.comments('pending').then((r) => setPendingComments(r.counts.pending)).catch(() => {});
+  }, []);
 
   const signOut = async () => {
     await adminApi.logout().catch(() => {});
@@ -130,6 +140,7 @@ function Dashboard({ email, onSignOut }) {
                 <button type="button" onClick={() => setTab(id)} aria-current={tab === id ? 'page' : undefined}
                   className={`flex items-center gap-2 whitespace-nowrap border-b-2 px-3 py-3 text-sm font-semibold transition-colors ${tab === id ? 'border-brand-orange text-navy' : 'border-transparent text-navy/55 hover:text-navy'}`}>
                   <Icon size={16} /> {label}
+                  {id === 'comments' && pendingComments > 0 && <span className="rounded-full bg-brand-red px-1.5 py-0.5 text-[10px] font-bold leading-none text-white" aria-label={`${pendingComments} pending`}>{pendingComments}</span>}
                 </button>
               </li>
             ))}
@@ -137,7 +148,7 @@ function Dashboard({ email, onSignOut }) {
         </nav>
       </header>
       <main className="mx-auto max-w-7xl px-4 py-8">
-        <div key={current.id}>{current.el}</div>
+        <div key={current.id}>{current.id === 'comments' ? <CommentsManager onCountsChange={(c) => setPendingComments(c.pending)} /> : current.el}</div>
       </main>
       {pwOpen && <PasswordDialog onClose={() => setPwOpen(false)} />}
     </>

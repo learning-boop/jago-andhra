@@ -29,7 +29,7 @@ export const navLinks = [
   { key: 'demands', to: '/#demands' },
   { key: 'events', to: '/events' },
   { key: 'updates', to: '/updates' },
-  { key: 'gallery', to: '/#gallery' },
+  { key: 'gallery', to: '/gallery' },
   { key: 'documents', to: '/documents' },
   { key: 'contact', to: '/contact' },
 ];

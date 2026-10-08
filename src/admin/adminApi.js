@@ -47,12 +47,31 @@ export const adminApi = {
   deleteMessage: (id) => authed(`/admin/messages.php?id=${id}`, { method: 'DELETE' }),
   votes: () => request('/votes.php'),
 
-  /** type: 'update' | 'event' | 'document' */
+  /** status: 'pending' | 'approved' | 'rejected' | '' (all) → { items, counts } */
+  comments: (status = '') => authed(`/admin/comments.php${status ? `?status=${status}` : ''}`),
+  setCommentStatus: (id, status) => authed(`/admin/comments.php?id=${id}`, json('PUT', { status })),
+  deleteComment: (id) => authed(`/admin/comments.php?id=${id}`, { method: 'DELETE' }),
+
+  /** type: 'update' | 'event' | 'document' | 'photo' */
   content: (type) => authed(`/admin/content.php?type=${type}`),
   saveContent: (type, record) => (record.id
     ? authed(`/admin/content.php?type=${type}&id=${record.id}`, json('PUT', record))
     : authed(`/admin/content.php?type=${type}`, json('POST', record))),
   deleteContent: (type, id) => authed(`/admin/content.php?type=${type}&id=${id}`, { method: 'DELETE' }),
+
+  /** Uploads one photo to the gallery; resolves to { created: GalleryItem[], errors: string[] }. */
+  async uploadPhoto(file, categoryId, caption) {
+    const form = new FormData();
+    form.append('files[]', file);
+    form.append('categoryId', categoryId);
+    form.append('caption_en', caption.en || '');
+    form.append('caption_te', caption.te || '');
+    const res = await fetch(`${BASE_URL}/admin/photos.php`, { method: 'POST', body: form, headers: { Authorization: `Bearer ${session.get()}` } });
+    const data = await res.json().catch(() => ({}));
+    if (res.status === 401) { session.clear(); window.dispatchEvent(new Event('admin-signed-out')); }
+    if (!res.ok) throw new Error(data.errors?.join(' ') || data.error || 'Upload failed');
+    return data;
+  },
 
   /** Uploads a PDF; resolves to { url, size }. */
   async upload(file) {

@@ -64,3 +64,18 @@ CREATE TABLE IF NOT EXISTS content (
   updated_at DATETIME NOT NULL,
   INDEX (type, sort_date)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Public comments on the Points of Discussion; shown on the site only after admin approval.
+CREATE TABLE IF NOT EXISTS comments (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  district VARCHAR(60),
+  question TINYINT UNSIGNED,
+  message TEXT NOT NULL,
+  status VARCHAR(10) NOT NULL DEFAULT 'pending',
+  ip_hash CHAR(64) NOT NULL,
+  created_at DATETIME NOT NULL,
+  reviewed_at DATETIME,
+  INDEX (status, created_at),
+  INDEX (ip_hash, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

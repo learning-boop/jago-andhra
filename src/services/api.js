@@ -9,10 +9,13 @@
  *   GET  /events.php            → Event[]
  *   GET  /updates.php           → Update[]
  *   GET  /documents.php         → Document[]
+ *   GET  /gallery.php           → GalleryItem[]
  *   POST /members.php           → { ok: true, id }
  *   POST /contact.php           → { ok: true, id }
  *   GET  /votes.php             → { up, down }
  *   POST /votes.php  { vote }   → { up, down }   (vote: 'up' | 'down'; count one vote per visitor/IP)
+ *   GET  /comments.php          → approved Comment[]
+ *   POST /comments.php          → { ok: true, pending: true }   (shown only after admin approval)
  */
 import { events } from '../data/events';
 import { updates } from '../data/updates';
@@ -24,16 +27,18 @@ import { districts } from '../data/districts';
 export const BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
 export const USE_API = Boolean(BASE_URL);
 
-/** Content managed through the backend admin; gallery, media and districts stay in src/data. */
-const FROM_API = ['events', 'updates', 'documents'];
+/** Content managed through the backend admin; media and districts stay in src/data. */
+const FROM_API = ['events', 'updates', 'documents', 'gallery'];
 
 const endpoints = {
   events: '/events.php',
   updates: '/updates.php',
   documents: '/documents.php',
+  gallery: '/gallery.php',
   members: '/members.php',
   contact: '/contact.php',
   votes: '/votes.php',
+  comments: '/comments.php',
 };
 
 const mock = { events, updates, documents, gallery, media, districts };
@@ -85,6 +90,15 @@ export const api = {
       ? request(endpoints.contact, { method: 'POST', body: JSON.stringify(msg) })
       : simulate({ ok: true, id: Date.now() }, 600),
 
+  /** Approved comments on the Points of Discussion (none without the backend). */
+  getComments: () => (USE_API ? request(endpoints.comments) : simulate([])),
+
+  /** @param {{name:string, district?:string, question?:number, message:string, website?:string}} comment */
+  postComment: (comment) =>
+    USE_API
+      ? request(endpoints.comments, { method: 'POST', body: JSON.stringify(comment) })
+      : simulate({ ok: true, pending: true }, 500),
+
   getVotes: () => (USE_API ? request(endpoints.votes) : simulate(mockVotes())),
 
   /** @param {'up'|'down'} vote */
@@ -102,11 +116,12 @@ export const api = {
  * Event        { id, slug, date(YYYY-MM-DD), time, districtId, typeId, title:L, venue:L, address:L, mapsQuery, description:L, status }
  * Update       { id, slug, categoryId, date, title:L, excerpt:L, image, imageAlt, body:L }
  * Document     { id, categoryId, title:L, date, description:L, url, size, official }
- * GalleryItem  { id, categoryId, src, alt, caption:L, h('short'|'medium'|'tall') }
+ * GalleryItem  { id, categoryId('meetings'|'press'|'history'), src, thumb, w, h, alt, caption:L }
  * MediaItem    { id, categoryId, title:L, duration, youtubeId, thumbnail, description:L }
  * District     { id, name:L, region('north'|'godavari'|'central'|'south'|'rayalaseema'), contact{name,phone,email} }
  *               (map shapes/coords are static in src/data/apMap.js, keyed by the same id)
  * Member       { fullName, mobile, email, age, profession, district, address, message, consent }
  * ContactMsg   { name, email, phone, message }
  * Votes        { up: number, down: number }
+ * Comment      { id, name, district, question(1-15|null), message, date }
  */

@@ -1,6 +1,7 @@
 <?php
 /**
- * News posts, events and documents.  ?type=update|event|document
+ * News posts, events, documents and gallery photos.  ?type=update|event|document|photo
+ * (New photos are uploaded through photos.php; here they can be listed, edited and deleted.)
  * GET               → record[]
  * POST   {record}   → record      (create)
  * PUT    ?id=N {record} → record  (replace)
@@ -14,11 +15,17 @@ $type = $_GET['type'] ?? '';
 if (!in_array($type, CONTENT_TYPES, true)) fail('Unknown content type');
 $id = (int) ($_GET['id'] ?? 0);
 
-if (method() === 'GET') json_out(content_list($type, $type === 'event' ? 'ASC' : 'DESC'));
+if (method() === 'GET') {
+    $list = content_list($type, $type === 'event' ? 'ASC' : 'DESC');
+    // Photos: same order as the public gallery (newest date first, upload order within a date)
+    if ($type === 'photo') usort($list, fn ($a, $b) => strcmp($b['date'] ?? '', $a['date'] ?? '') ?: $a['id'] <=> $b['id']);
+    json_out($list);
+}
 
 if (method() === 'DELETE') {
     $existing = content_get($type, $id) ?? fail('Not found', 404);
     if ($type === 'document') delete_upload($existing['url'] ?? '');
+    if ($type === 'photo') { delete_upload($existing['src'] ?? ''); delete_upload($existing['thumb'] ?? ''); }
     db()->prepare('DELETE FROM content WHERE id = ? AND type = ?')->execute([$id, $type]);
     json_out(['ok' => true]);
 }
@@ -57,6 +64,22 @@ function valid_date($d): string
 
 function validate(string $type, array $r): array
 {
+    if ($type === 'photo') {
+        $src = safe_url($r['src'] ?? '');
+        if ($src === '') fail('Photo address is missing.');
+        $caption = bilingual($r['caption'] ?? [], 300);
+        return [
+            'categoryId' => in_array($r['categoryId'] ?? '', ['meetings', 'press', 'history'], true) ? $r['categoryId'] : 'meetings',
+            'src' => $src,
+            'thumb' => safe_url($r['thumb'] ?? '') ?: $src,
+            'w' => max(0, (int) ($r['w'] ?? 0)),
+            'h' => max(0, (int) ($r['h'] ?? 0)),
+            'alt' => clean($r['alt'] ?? '', 300) ?: $caption['en'],
+            'caption' => $caption,
+            'date' => valid_date($r['date'] ?? gmdate('Y-m-d')),
+        ];
+    }
+
     $title = bilingual($r['title'] ?? [], 300);
     if ($title['en'] === '') fail('English title is required.');
 
@@ -115,12 +138,14 @@ function validate(string $type, array $r): array
     ];
 }
 
-/** Deletes a PDF previously stored in uploads/ (ignores links elsewhere). */
+/** Deletes a file previously stored in uploads/ or uploads/gallery/ (ignores links elsewhere). */
 function delete_upload(string $url): void
 {
     $prefix = rtrim((string) cfg('public_url'), '/') . '/uploads/';
     if (strpos($url, $prefix) !== 0) return;
-    $name = basename(substr($url, strlen($prefix)));
-    $path = __DIR__ . '/../uploads/' . $name;
-    if (preg_match('/^[a-f0-9]{16}-[a-z0-9-]+\.pdf$/', $name) && is_file($path)) unlink($path);
+    $rel = substr($url, strlen($prefix));
+    if (preg_match('#^[a-f0-9]{16}-[a-z0-9-]+\.pdf$#', $rel) || preg_match('#^gallery/[a-f0-9]{16}(-thumb)?\.webp$#', $rel)) {
+        $path = __DIR__ . '/../uploads/' . $rel;
+        if (is_file($path)) unlink($path);
+    }
 }

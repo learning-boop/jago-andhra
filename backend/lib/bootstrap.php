@@ -127,7 +127,7 @@ function require_admin(): array
 
 /* ---------- Content (news, events, documents) ---------- */
 
-const CONTENT_TYPES = ['update', 'event', 'document'];
+const CONTENT_TYPES = ['update', 'event', 'document', 'photo'];
 
 function content_list(string $type, string $order = 'DESC'): array
 {

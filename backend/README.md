@@ -11,7 +11,7 @@ documents to the website, and powers the admin area at **`/admin`** on the websi
 1. Create a MySQL database and user in your hosting panel.
 2. Upload the contents of this `backend/` folder to your server, e.g. to a subdomain such as
    `https://api.jagoandhra.org/` (or a folder like `https://yourdomain/api/`).
-3. Make sure `uploads/` is writable by PHP (permission 755 or 775).
+3. Make sure `uploads/` is writable by PHP (permission 755 or 775). Gallery photos go to `uploads/gallery/` (created automatically). PHP needs the GD extension (standard on most hosts).
 
 ## 2. Configure
 
@@ -50,8 +50,10 @@ Sign in at `https://jagoandhra.org/admin`.
 
 - **Join submissions** — table, search, delete, export to CSV (opens in Excel, Telugu-safe)
 - **Messages** — contact-form messages
+- **Comments** — comments on the Points of Discussion (Issue page). New comments wait as *pending*; only *approved* ones appear on the website. Approve, reject/hide, or delete. The tab shows a red badge with the number waiting.
 - **Poll** — support poll totals
 - **News / Events / Documents** — add, edit, delete; upload PDFs (max 20 MB)
+- **Gallery** — upload many photos at once (JPEG/PNG/WebP, max 15 MB each); they are rotated upright, resized to 1600 px with a thumbnail, and shown on the website's Gallery. Edit captions/category or delete.
 - **Password** — change the admin password (signs out other sessions)
 
 ## Security notes
@@ -67,12 +69,12 @@ Sign in at `https://jagoandhra.org/admin`.
 
 ## Endpoints
 
-Public: `GET updates.php`, `GET events.php`, `GET documents.php`, `GET|POST votes.php`,
+Public: `GET updates.php`, `GET events.php`, `GET documents.php`, `GET gallery.php`, `GET|POST votes.php`, `GET|POST comments.php` (GET = approved only; max 5 posts per visitor per hour),
 `POST members.php`, `POST contact.php`.
 
 Admin (header `Authorization: Bearer <token>`): `admin/login.php`, `admin/logout.php`,
-`admin/me.php`, `admin/password.php`, `admin/members.php`, `admin/messages.php`,
-`admin/content.php?type=update|event|document`, `admin/upload.php`.
+`admin/me.php`, `admin/password.php`, `admin/members.php`, `admin/messages.php`, `admin/comments.php`,
+`admin/content.php?type=update|event|document|photo`, `admin/upload.php` (PDF), `admin/photos.php` (gallery photos).
 
 ## Refreshing the seed
 

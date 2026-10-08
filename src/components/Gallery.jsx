@@ -1,20 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
 import { Reveal, SectionHeader, Spinner, FilterPills, catLabel } from './ui';
 import { useFetch } from '../hooks/useFetch';
 import { api } from '../services/api';
 import { galleryCategories } from '../data/gallery';
 import { useLang } from '../i18n/LanguageContext';
 
-const heights = { short: 'aspect-[4/3]', medium: 'aspect-square', tall: 'aspect-[3/4]' };
-
-export default function Gallery() {
+/** limit: show only the first N photos (home page) with a link to the full gallery. */
+export default function Gallery({ limit, header = true }) {
   const { t, tr } = useLang();
   const { data, loading } = useFetch(api.getGallery);
   const [cat, setCat] = useState('all');
   const [index, setIndex] = useState(-1);
-  const items = (data || []).filter((g) => cat === 'all' || g.categoryId === cat);
+  const filtered = (data || []).filter((g) => cat === 'all' || g.categoryId === cat);
+  const items = limit ? filtered.slice(0, limit) : filtered;
   const open = index >= 0;
   const prev = useCallback(() => setIndex((i) => (i - 1 + items.length) % items.length), [items.length]);
   const next = useCallback(() => setIndex((i) => (i + 1) % items.length), [items.length]);
@@ -30,7 +31,7 @@ export default function Gallery() {
     <section id="gallery" className="section bg-brand-cream">
       <div className="container-x">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeader eyebrow={t('gallery.eyebrow')} title={t('gallery.title')} subtitle={t('gallery.subtitle')} />
+          {header ? <SectionHeader eyebrow={t('gallery.eyebrow')} title={t('gallery.title')} subtitle={t('gallery.subtitle')} /> : <span />}
           <Reveal delay={1}><FilterPills items={galleryCategories} value={cat} onChange={(c) => { setCat(c); setIndex(-1); }} /></Reveal>
         </div>
 
@@ -40,7 +41,7 @@ export default function Gallery() {
               {items.map((g, i) => (
                 <motion.figure key={g.id} layout initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.4, delay: i * 0.04 }} className="group relative overflow-hidden rounded-2xl bg-navy-50">
                   <button type="button" onClick={() => setIndex(i)} className="block w-full" aria-label={`${t('gallery.open')}: ${tr(g.caption)}`}>
-                    <div className={`${heights[g.h] || heights.medium} overflow-hidden`}><img src={g.src} alt={g.alt} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" /></div>
+                    <div className="overflow-hidden" style={{ aspectRatio: g.w && g.h ? `${g.w} / ${g.h}` : '1 / 1' }}><img src={g.thumb || g.src} alt={g.alt} loading="lazy" width={g.w} height={g.h} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></div>
                     <span className="absolute inset-0 flex items-end bg-gradient-to-t from-navy-900/80 via-transparent to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <span className="flex w-full items-center justify-between text-left text-white">
                         <span><span className="badge bg-white/20 backdrop-blur">{tr(catLabel(galleryCategories, g.categoryId))}</span><span className="mt-1 block text-sm font-semibold">{tr(g.caption)}</span></span>
@@ -52,6 +53,12 @@ export default function Gallery() {
               ))}
             </AnimatePresence>
           </motion.div>
+        )}
+
+        {limit && filtered.length > limit && (
+          <Reveal className="mt-10 flex justify-center">
+            <Link to="/gallery" className="btn-outline">{t('gallery.viewAll')(filtered.length)} <ArrowRight size={16} /></Link>
+          </Reveal>
         )}
       </div>
 

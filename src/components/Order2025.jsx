@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, ArrowRight } from 'lucide-react';
 import { Icon, Reveal, SectionHeader, PositionTag } from './ui';
 import { orderCards } from '../data/site';
 import { districts, multiZoneOf, romanZone } from '../data/districts';
@@ -28,6 +29,7 @@ export default function Order2025() {
             <div className="flex flex-wrap items-center gap-3"><h3 className="font-display text-2xl font-extrabold text-navy sm:text-3xl">{t('order.whyDebated')}</h3><PositionTag kind="apgea" /></div>
             <p className="leading-relaxed text-navy/70">{t('order.debated1')}</p>
             <p className="leading-relaxed text-navy/70">{t('order.debated2')}</p>
+            <Link to="/issue#discussion" className="inline-flex items-center gap-2 text-sm font-bold text-brand-red hover:underline">{t('order.readQuestions')} <ArrowRight size={15} /></Link>
           </Reveal>
         </div>
 

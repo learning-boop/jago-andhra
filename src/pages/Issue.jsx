@@ -1,6 +1,8 @@
 import PageHeader from '../components/PageHeader';
 import IssueTimeline from '../components/IssueTimeline';
 import Order2025 from '../components/Order2025';
+import DiscussionPoints from '../components/DiscussionPoints';
+import DiscussionComments from '../components/DiscussionComments';
 import Documents from '../components/Documents';
 import { Reveal, PositionTag } from '../components/ui';
 import { faqs } from '../data/site';
@@ -13,6 +15,8 @@ export default function Issue() {
       <PageHeader eyebrow={t('issue.eyebrow')} title={t('issue.title')} subtitle={t('issuePage.subtitle')} />
       <IssueTimeline />
       <Order2025 />
+      <DiscussionPoints />
+      <DiscussionComments />
       <section className="section bg-white">
         <div className="container-x max-w-4xl">
           <Reveal><span className="eyebrow text-brand-red">{t('issuePage.faqEyebrow')}</span><h2 className="h-display mt-4 text-3xl text-navy sm:text-4xl">{t('issuePage.faqTitle')}</h2></Reveal>

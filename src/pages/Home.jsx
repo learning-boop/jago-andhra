@@ -24,7 +24,7 @@ export default function Home() {
       <DistrictMap />
       <Updates />
       <Media />
-      <Gallery />
+      <Gallery limit={12} />
       <Documents compact />
       <SocialMedia />
       <Contact />

@@ -54,6 +54,13 @@ export default function Hero() {
             <span className="block bg-gradient-to-r from-brand-orange via-[#ff7a2e] to-brand-red bg-clip-text text-transparent">{t('brand.nameBottom')}</span>
           </motion.h1>
 
+          {/* Campaign slogan under the brand name */}
+          <motion.p variants={textReveal} custom={1.5} initial="hidden" animate="show"
+            className={`mt-5 flex flex-wrap items-baseline gap-x-3 font-display font-extrabold leading-tight ${isTe ? 'font-telugu text-2xl sm:text-3xl' : 'text-2xl tracking-wide sm:text-4xl'}`}>
+            <span className="text-white">{t('brand.slogan1')}</span>
+            <span className="text-brand-orange">{t('brand.slogan2')}</span>
+          </motion.p>
+
           <motion.p variants={textReveal} custom={2} initial="hidden" animate="show" className={`mt-6 text-xl font-semibold text-white/90 sm:text-2xl ${isTe ? 'font-telugu' : ''}`}>{t('brand.tagline')}</motion.p>
           <motion.p variants={textReveal} custom={3} initial="hidden" animate="show" className={`mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg ${isTe ? 'font-telugu' : ''}`}>{t('hero.quote')}</motion.p>
 

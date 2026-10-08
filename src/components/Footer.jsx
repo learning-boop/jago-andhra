@@ -20,6 +20,7 @@ export default function Footer() {
             <img src={logo} alt={t('hero.logoAlt')} width="72" height="72" className="h-[72px] w-[72px] rounded-full bg-white" loading="lazy" />
             <span>
               <span className={`block font-display text-2xl font-black leading-none ${isTe ? 'font-telugu' : ''}`}>{t('brand.nameTop')} <span className="text-brand-orange">{t('brand.nameBottom')}</span></span>
+              <span className={`mt-1.5 block text-sm font-bold ${isTe ? 'font-telugu' : 'tracking-wide'}`}>{t('brand.slogan1')} <span className="text-brand-orange">{t('brand.slogan2')}</span></span>
               <span className={`mt-1 block text-xs text-white/60 ${isTe ? 'font-telugu' : ''}`}>{t('brand.tagline')}</span>
             </span>
           </Link>

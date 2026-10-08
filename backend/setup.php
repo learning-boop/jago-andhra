@@ -38,7 +38,7 @@ function import_seed(): int
     if ((int) db()->query('SELECT COUNT(*) FROM content')->fetchColumn() > 0) return 0;
     $seed = json_decode((string) @file_get_contents(__DIR__ . '/seed.json'), true) ?: [];
     $n = 0;
-    foreach (['update' => 'updates', 'event' => 'events', 'document' => 'documents'] as $type => $key) {
+    foreach (['update' => 'updates', 'event' => 'events', 'document' => 'documents', 'photo' => 'photos'] as $type => $key) {
         foreach ($seed[$key] ?? [] as $record) { content_save($type, $record); $n++; }
     }
     return $n;

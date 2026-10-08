@@ -12,6 +12,7 @@ import EventsPage from './pages/EventsPage';
 import UpdatesPage from './pages/UpdatesPage';
 import UpdateDetail from './pages/UpdateDetail';
 import DocumentsPage from './pages/DocumentsPage';
+import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 import Legal from './pages/Legal';
 import NotFound from './pages/NotFound';
@@ -21,8 +22,8 @@ import { useLang } from './i18n/LanguageContext';
 const AdminApp = lazy(() => import('./admin/AdminApp'));
 
 const titles = {
-  en: { '/': 'Jago Andhra | A Movement for a Constitutional Andhra Pradesh', '/about': 'About | Jago Andhra', '/issue': 'The Issue | Jago Andhra', '/events': 'Events & Programmes | Jago Andhra', '/updates': 'Latest Updates | Jago Andhra', '/documents': 'Documents & Resources | Jago Andhra', '/contact': 'Contact | Jago Andhra' },
-  te: { '/': 'జాగో ఆంధ్ర | రాజ్యాంగ సమానత్వం కోసం పోరాటం', '/about': 'మా గురించి | జాగో ఆంధ్ర', '/issue': 'సమస్య | జాగో ఆంధ్ర', '/events': 'కార్యక్రమాలు | జాగో ఆంధ్ర', '/updates': 'తాజా సమాచారం | జాగో ఆంధ్ర', '/documents': 'పత్రాలు | జాగో ఆంధ్ర', '/contact': 'సంప్రదించండి | జాగో ఆంధ్ర' },
+  en: { '/': 'Jago Andhra | A Movement for a Constitutional Andhra Pradesh', '/about': 'About | Jago Andhra', '/issue': 'The Issue | Jago Andhra', '/events': 'Events & Programmes | Jago Andhra', '/updates': 'Latest Updates | Jago Andhra', '/documents': 'Documents & Resources | Jago Andhra', '/gallery': 'Gallery | Jago Andhra', '/contact': 'Contact | Jago Andhra' },
+  te: { '/': 'జాగో ఆంధ్ర | రాజ్యాంగ సమానత్వం కోసం పోరాటం', '/about': 'మా గురించి | జాగో ఆంధ్ర', '/issue': 'సమస్య | జాగో ఆంధ్ర', '/events': 'కార్యక్రమాలు | జాగో ఆంధ్ర', '/updates': 'తాజా సమాచారం | జాగో ఆంధ్ర', '/documents': 'పత్రాలు | జాగో ఆంధ్ర', '/gallery': 'గ్యాలరీ | జాగో ఆంధ్ర', '/contact': 'సంప్రదించండి | జాగో ఆంధ్ర' },
 };
 
 /** Scroll to top on route change, or to the hash target if present. */
@@ -75,6 +76,7 @@ export default function App() {
             <Route path="/updates" element={<UpdatesPage />} />
             <Route path="/updates/:slug" element={<UpdateDetail />} />
             <Route path="/documents" element={<DocumentsPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<Legal page="privacy" />} />
             <Route path="/terms" element={<Legal page="terms" />} />

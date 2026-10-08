@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Play, X } from 'lucide-react';
+import { ExternalLink, Play, X } from 'lucide-react';
 import { Reveal, SectionHeader, Spinner, PositionTag, FilterPills, catLabel } from './ui';
 import { useFetch } from '../hooks/useFetch';
 import { api } from '../services/api';
@@ -27,7 +27,7 @@ export default function Media() {
               {items.map((m, i) => (
                 <motion.article key={m.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.35, delay: i * 0.05 }}
                   className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-navy ${i === 0 ? 'sm:col-span-2 sm:row-span-2' : ''}`}>
-                  <button type="button" onClick={() => setPlaying(m)} className="block w-full text-left" aria-label={`${t('common.play')}: ${tr(m.title)}`}>
+                  <button type="button" onClick={() => (m.embed === false ? window.open(`https://www.youtube.com/watch?v=${m.youtubeId}`, '_blank', 'noopener') : setPlaying(m))} className="block w-full text-left" aria-label={`${t('common.play')}: ${tr(m.title)}${m.embed === false ? ` (${t('media.watchOnYoutube')})` : ''}`}>
                     <div className={`relative overflow-hidden ${i === 0 ? 'aspect-[16/10] sm:aspect-auto sm:h-full sm:min-h-[420px]' : 'aspect-video'}`}>
                       <img src={m.youtubeId ? `https://i.ytimg.com/vi/${m.youtubeId}/hqdefault.jpg` : m.thumbnail} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                       <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/30 to-transparent" />
@@ -35,7 +35,9 @@ export default function Media() {
                       <div className="absolute inset-x-0 bottom-0 p-5">
                         <span className="badge bg-white/15 text-white backdrop-blur">{tr(catLabel(mediaCategories, m.categoryId))}</span>
                         <h3 className={`mt-2 font-display font-extrabold leading-snug ${i === 0 ? 'text-xl sm:text-2xl' : 'text-base'}`}>{tr(m.title)}</h3>
-                        <span className="mt-1 block text-xs text-white/60">{m.duration}</span>
+                        {m.embed === false
+                          ? <span className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-white/70">{t('media.watchOnYoutube')} <ExternalLink size={12} /></span>
+                          : m.duration && <span className="mt-1 block text-xs text-white/60">{m.duration}</span>}
                       </div>
                     </div>
                   </button>
@@ -58,6 +60,12 @@ export default function Media() {
                   <div className="flex h-full flex-col items-center justify-center gap-3 p-8 text-center"><PositionTag kind="placeholder" /><p className="text-white/70">{t('media.noVideo')} “{tr(playing.title)}”.</p></div>
                 )}
               </div>
+              {playing.youtubeId && (
+                // Fallback for videos whose owner has disabled playback on other websites
+                <a href={`https://www.youtube.com/watch?v=${playing.youtubeId}`} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white/75 hover:text-white">
+                  <ExternalLink size={15} /> {t('media.watchOnYoutube')}
+                </a>
+              )}
             </motion.div>
           </motion.div>
         )}
