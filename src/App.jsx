@@ -10,6 +10,7 @@ import About from './pages/About';
 import Issue from './pages/Issue';
 import EventsPage from './pages/EventsPage';
 import UpdatesPage from './pages/UpdatesPage';
+import UpdateDetail from './pages/UpdateDetail';
 import DocumentsPage from './pages/DocumentsPage';
 import ContactPage from './pages/ContactPage';
 import Legal from './pages/Legal';
@@ -66,6 +67,7 @@ export default function App() {
             <Route path="/issue" element={<Issue />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/updates" element={<UpdatesPage />} />
+            <Route path="/updates/:slug" element={<UpdateDetail />} />
             <Route path="/documents" element={<DocumentsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<Legal page="privacy" />} />

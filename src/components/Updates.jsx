@@ -22,7 +22,7 @@ export function UpdateCard({ u, index = 0 }) {
           <span className="flex items-center gap-2 text-xs font-semibold text-navy/50"><CalendarDays size={13} aria-hidden="true" /> {formatDate(u.date, lang)}</span>
           <h3 className="mt-3 font-display text-lg font-extrabold leading-snug text-navy">{tr(u.title)}</h3>
           <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-navy/65">{tr(u.excerpt)}</p>
-          <Link to={`/updates#${u.slug}`} className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-red">{t('common.readMore')} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" /></Link>
+          <Link to={`/updates/${u.slug}`} className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-red">{t('common.readMore')} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" /></Link>
         </div>
       </motion.article>
     </Reveal>
