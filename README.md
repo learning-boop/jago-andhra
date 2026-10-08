@@ -58,19 +58,18 @@ src/
 public/         favicon.png, og-logo.png, robots.txt, sitemap.xml
 ```
 
-## Connecting the PHP + MySQL backend
+## Backend & admin (`/admin`)
 
-Nothing in the components touches the mock files directly — everything goes through
-`src/services/api.js`. To go live:
+The `backend/` folder is a PHP + MySQL API with an admin area at **`/admin`** on the site
+(join submissions with CSV export, contact messages, poll results, and editing of news,
+events and documents with PDF upload). Setup and deployment steps: **[backend/README.md](backend/README.md)**.
 
-1. Copy `.env.example` → `.env` and set `VITE_API_BASE_URL=https://your-domain/api`.
-2. Implement the endpoints listed at the top of `api.js` (`events.php`, `updates.php`,
-   `documents.php`, `gallery.php`, `media.php`, `districts.php`, `members.php`, `contact.php`).
-3. Return JSON in the record shapes documented at the bottom of `api.js` — they match the
-   mock files, so the UI needs no changes.
-
-Suggested MySQL tables map 1:1 to those shapes: `events`, `updates`, `documents`, `gallery`,
-`media`, `districts`, `members`, `contact_messages`.
+- Without `VITE_API_BASE_URL` the site runs on the built-in data in `src/data/` and `/admin`
+  shows "Backend not connected".
+- With it set, news / events / documents come from the backend and forms are saved there.
+  Gallery, media and district data always come from `src/data/`.
+- The admin password is created on the server through the one-time `setup.php` page and stored
+  only as a hash — never put passwords in this repo.
 
 ## Content rules baked into the UI
 

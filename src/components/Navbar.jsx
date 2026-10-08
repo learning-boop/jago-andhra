@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { navLinks } from '../data/site';
 import { useLang } from '../i18n/LanguageContext';
 import LanguageToggle from './LanguageToggle';
-import { useJoin } from './JoinModal';
+import { useJoin } from './joinContext';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

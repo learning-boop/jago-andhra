@@ -1,0 +1,358 @@
+{
+  "updates": [
+    {
+      "slug": "campaign-launch-statement",
+      "categoryId": "press",
+      "date": "2026-10-01",
+      "title": {
+        "en": "Jago Andhra public awareness campaign announced",
+        "te": "జాగో ఆంధ్ర ప్రజా అవగాహన ఉద్యమం ప్రకటన"
+      },
+      "excerpt": {
+        "en": "[Placeholder] Organisers announce a state-wide public awareness campaign on constitutional principles and local-cadre concerns. Replace with the official press release text.",
+        "te": "[తాత్కాలికం] రాజ్యాంగ సూత్రాలు మరియు స్థానిక కేడర్ ఆందోళనలపై రాష్ట్రవ్యాప్త ప్రజా అవగాహన ఉద్యమాన్ని నిర్వాహకులు ప్రకటించారు. అధికారిక పత్రికా ప్రకటనతో భర్తీ చేయండి."
+      },
+      "image": "https://images.unsplash.com/photo-1450101499163-c8f905deb7bd?auto=format&fit=crop&w=900&q=70",
+      "imageAlt": "Documents and a pen on a desk",
+      "body": {
+        "en": "[Full press release body — to be supplied by the organising committee.]",
+        "te": "[పూర్తి పత్రికా ప్రకటన — నిర్వాహక కమిటీ అందించాలి.]"
+      }
+    },
+    {
+      "slug": "understanding-presidential-order-2025",
+      "categoryId": "news",
+      "date": "2026-10-03",
+      "title": {
+        "en": "Explainer: what the Presidential Order 2025 covers",
+        "te": "వివరణ: రాష్ట్రపతి ఉత్తర్వు 2025 ఏమి కవర్ చేస్తుంది"
+      },
+      "excerpt": {
+        "en": "A plain-language guide to the new order: 26 districts in 6 zones and 2 multi-zones, which posts go into which cadre, the 95% local reservation, who counts as a local candidate, and the implementation timeline.",
+        "te": "కొత్త ఉత్తర్వుకు సరళ భాషా మార్గదర్శి: 6 జోన్లు, 2 మల్టీ-జోన్లలో 26 జిల్లాలు, ఏ పోస్టులు ఏ కేడర్‌లోకి, 95% స్థానిక రిజర్వేషన్, స్థానిక అభ్యర్థి ఎవరు, మరియు అమలు గడువులు."
+      },
+      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=70",
+      "imageAlt": "Scales of justice on a wooden desk",
+      "body": {
+        "en": [
+          "On 15 December 2025 the President issued a new order under Article 371D of the Constitution. It changes how government posts in Andhra Pradesh are organised into local cadres, and who gets priority in direct recruitment to them. This explainer summarises what the order says. It is a plain-language guide — the official text, linked at the end, is the authority.",
+          "## What is the order?",
+          "The Andhra Pradesh Public Employment (Organisation of Local Cadres and Regulation of Direct Recruitment) Order, 2025 — S.O. 5777(E) of the Ministry of Home Affairs — was published in the Gazette of India: Extraordinary on 15 December 2025. It came into force at once and supersedes the 1975 Order, except for things already done under it. The State Government republished it in the Andhra Pradesh Gazette on 20 April 2026 through G.O.Ms.No.45.",
+          "## New local areas: 26 districts, 6 zones, 2 multi-zones",
+          "The Schedule to the order groups the State’s 26 revenue districts as follows:",
+          "- Zone I: Srikakulam, Vizianagaram, Parvathipuram Manyam, Visakhapatnam, Anakapalli\n- Zone II: Alluri Sitarama Raju, East Godavari, Kakinada, Dr. B.R. Ambedkar Konaseema\n- Zone III: West Godavari, Eluru, NTR, Krishna\n- Zone IV: Guntur, Palnadu, Bapatla, Prakasam, Sri Potti Sriramulu Nellore\n- Zone V: Tirupati, Chittoor, Annamayya, YSR Kadapa\n- Zone VI: Nandyal, Ananthapuramu, Kurnool, Sri Sathya Sai",
+          "Zones I–III form Multi-Zone I, and Zones IV–VI form Multi-Zone II.",
+          "## Which posts go into which cadre",
+          "- District cadre: Junior Assistant and every equivalent or lower post, plus all posts in the AP School Education Subordinate Service and equivalent teacher posts.\n- Zonal cadre: posts above Junior Assistant up to and including Superintendent, and the first-level Gazetted post, in each department.\n- Multi-zonal cadre: posts above Superintendent and the first-level Gazetted post, up to and including Deputy Collector.",
+          "A post’s level is decided by comparing the minimum of its scale of pay (or its fixed pay) with these reference posts. Where it considers it expedient, the State may combine contiguous districts or zones into a single cadre (Para 3(5)). Each cadre is a separate unit for recruitment, appointment, discharge, seniority, promotion and transfer (Para 5).",
+          "## 95% reserved for local candidates",
+          "In every district, zonal and multi-zonal cadre, 95% of the posts filled by direct recruitment are reserved for local candidates of that area, and at least one post must stay unreserved (Para 8). If no qualified local candidate is available, a reserved post is carried forward for up to three years; meanwhile it may be filled temporarily by borrowing staff from another cadre (Para 9). Reservations for Backward Classes, Scheduled Castes and Scheduled Tribes continue to apply where consistent with the order (Para 12).",
+          "## Who is a local candidate?",
+          "Under Paragraph 7, a candidate is local to an area if they:",
+          "- studied there for at least four consecutive academic years ending with the year they first appeared for the relevant qualifying examination; or\n- did not study during that period but lived there for four years before that examination; or\n- for posts with no educational qualification, lived there for four years before the post is notified.",
+          "The relevant examination is the minimum qualification for the post or Class VII, whichever is lower, and residence means where the candidate actually lived — not where their parents lived. Candidates who do not qualify in any area may be treated as local on the basis of seven years of study or residence in the State. Children of government servants posted outside the State get a one-time option to choose a local area.",
+          "## Who is not covered",
+          "The order does not apply to posts in the AP Secretariat, offices of Heads of Departments, notified Special Offices or Establishments, notified State-level offices or institutions, and police posts in the Commissionerate in the Capital area (Para 14).",
+          "## Allotment of serving employees",
+          "Serving employees will be allotted to the new cadres with regard to administrative needs, a balanced mix of age and seniority, length of service in the area, their own preference where feasible, and knowledge of the local language and law. An employee can make a representation within sixty days of the allotment order (Para 4). Appointments and promotions made before the cadres are organised are provisional and will be reviewed within twelve months after the cadres are organised (Para 13).",
+          "## Implementation timeline",
+          "The order gives the State twenty-seven months from 15 December 2025 to organise the local cadres (Para 3(1)). Through G.O.Ms.No.54 dated 14 May 2026, the General Administration Department asked every Secretariat Department to classify all its posts into district, zonal and multi-zonal cadres and to send certified proposals to the Chief Secretary by 25 May 2026. Departments that do not follow the 26-district, six-zone, two-multi-zone pattern must give specific reasons."
+        ],
+        "te": [
+          "15 డిసెంబర్ 2025న రాజ్యాంగంలోని అధికరణ 371D కింద రాష్ట్రపతి కొత్త ఉత్తర్వు జారీ చేశారు. ఆంధ్రప్రదేశ్‌లో ప్రభుత్వ పోస్టులు స్థానిక కేడర్లుగా ఎలా ఏర్పాటు చేయబడతాయి, వాటికి ప్రత్యక్ష నియామకాల్లో ఎవరికి ప్రాధాన్యం ఉంటుంది అనే అంశాలను ఇది మారుస్తుంది. ఈ వివరణ ఉత్తర్వు ఏమి చెబుతుందో సంగ్రహిస్తుంది. ఇది సరళ భాషా మార్గదర్శి మాత్రమే — చివర లింక్ చేసిన అధికారిక పాఠమే ప్రామాణికం.",
+          "## ఉత్తర్వు ఏమిటి?",
+          "ఆంధ్రప్రదేశ్ ప్రభుత్వ ఉద్యోగ (స్థానిక కేడర్ల ఏర్పాటు మరియు ప్రత్యక్ష నియామకాల నియంత్రణ) ఉత్తర్వు, 2025 — కేంద్ర హోం మంత్రిత్వ శాఖ S.O. 5777(E) — 15 డిసెంబర్ 2025న భారత గెజిట్: అసాధారణలో ప్రచురించబడింది. ఇది వెంటనే అమల్లోకి వచ్చి, 1975 ఉత్తర్వును రద్దు చేసింది (దాని కింద ఇప్పటికే జరిగినవి మినహా). రాష్ట్ర ప్రభుత్వం G.O.Ms.No.45 ద్వారా 20 ఏప్రిల్ 2026న ఆంధ్రప్రదేశ్ గెజిట్‌లో దీనిని పునఃప్రచురించింది.",
+          "## కొత్త స్థానిక ప్రాంతాలు: 26 జిల్లాలు, 6 జోన్లు, 2 మల్టీ-జోన్లు",
+          "ఉత్తర్వు షెడ్యూల్ రాష్ట్రంలోని 26 రెవెన్యూ జిల్లాలను ఇలా వర్గీకరిస్తుంది:",
+          "- జోన్ I: శ్రీకాకుళం, విజయనగరం, పార్వతీపురం మన్యం, విశాఖపట్నం, అనకాపల్లి\n- జోన్ II: అల్లూరి సీతారామరాజు, తూర్పు గోదావరి, కాకినాడ, డా. బి.ఆర్. అంబేద్కర్ కోనసీమ\n- జోన్ III: పశ్చిమ గోదావరి, ఏలూరు, ఎన్టీఆర్, కృష్ణా\n- జోన్ IV: గుంటూరు, పల్నాడు, బాపట్ల, ప్రకాశం, శ్రీ పొట్టి శ్రీరాములు నెల్లూరు\n- జోన్ V: తిరుపతి, చిత్తూరు, అన్నమయ్య, వైఎస్ఆర్ కడప\n- జోన్ VI: నంద్యాల, అనంతపురము, కర్నూలు, శ్రీ సత్యసాయి",
+          "జోన్లు I–III కలిసి మల్టీ-జోన్ I, జోన్లు IV–VI కలిసి మల్టీ-జోన్ II.",
+          "## ఏ పోస్టులు ఏ కేడర్‌లోకి",
+          "- జిల్లా కేడర్: జూనియర్ అసిస్టెంట్ మరియు దానికి సమానమైన లేదా దిగువ పోస్టులు, ఏపీ పాఠశాల విద్యా సబార్డినేట్ సర్వీసులోని అన్ని పోస్టులు, సమానమైన ఉపాధ్యాయ పోస్టులు.\n- జోనల్ కేడర్: ప్రతి శాఖలో జూనియర్ అసిస్టెంట్ పైనుండి సూపరింటెండెంట్ వరకు పోస్టులు, మొదటి స్థాయి గెజిటెడ్ పోస్టు.\n- మల్టీ-జోనల్ కేడర్: సూపరింటెండెంట్, మొదటి స్థాయి గెజిటెడ్ పోస్టు పైనుండి డిప్యూటీ కలెక్టర్ వరకు పోస్టులు.",
+          "ఒక పోస్టు స్థాయిని దాని వేతన స్కేలు కనిష్ఠం (లేదా స్థిర వేతనం) ఈ ప్రామాణిక పోస్టులతో పోల్చి నిర్ణయిస్తారు. అవసరమని భావిస్తే, ప్రక్కప్రక్కనే ఉన్న జిల్లాలు లేదా జోన్లను రాష్ట్రం ఒకే కేడర్‌గా కలపవచ్చు (పేరా 3(5)). ప్రతి కేడర్ నియామకం, నియమితి, తొలగింపు, సీనియారిటీ, పదోన్నతి, బదిలీలకు ప్రత్యేక యూనిట్ (పేరా 5).",
+          "## 95% స్థానిక అభ్యర్థులకు రిజర్వ్",
+          "ప్రతి జిల్లా, జోనల్, మల్టీ-జోనల్ కేడర్‌లో ప్రత్యక్ష నియామకాల ద్వారా భర్తీ చేసే పోస్టుల్లో 95% ఆ ప్రాంత స్థానిక అభ్యర్థులకు రిజర్వ్ చేయబడతాయి; కనీసం ఒక పోస్టు అన్‌రిజర్వ్‌డ్‌గా ఉండాలి (పేరా 8). అర్హత ఉన్న స్థానిక అభ్యర్థి లభించకపోతే, రిజర్వ్ పోస్టు మూడేళ్ల వరకు క్యారీ ఫార్వర్డ్ అవుతుంది; ఈలోగా ఇతర కేడర్ నుండి సిబ్బందిని తాత్కాలికంగా తీసుకుని భర్తీ చేయవచ్చు (పేరా 9). వెనుకబడిన తరగతులు, షెడ్యూల్డ్ కులాలు, షెడ్యూల్డ్ తెగల రిజర్వేషన్లు ఉత్తర్వుకు విరుద్ధం కానంత వరకు కొనసాగుతాయి (పేరా 12).",
+          "## స్థానిక అభ్యర్థి ఎవరు?",
+          "పేరా 7 ప్రకారం, ఒక అభ్యర్థి ఈ క్రింది సందర్భాల్లో ఆ ప్రాంతానికి స్థానికుడు:",
+          "- సంబంధిత అర్హత పరీక్ష మొదటిసారి రాసిన సంవత్సరంతో ముగిసే కనీసం నాలుగు వరుస విద్యా సంవత్సరాలు అక్కడ చదివితే; లేదా\n- ఆ కాలంలో చదవకపోయినా, ఆ పరీక్షకు ముందు నాలుగేళ్లు అక్కడ నివసించి ఉంటే; లేదా\n- విద్యార్హత లేని పోస్టులకు, పోస్టు నోటిఫై అయ్యే ముందు నాలుగేళ్లు అక్కడ నివసించి ఉంటే.",
+          "సంబంధిత పరీక్ష అంటే పోస్టుకు కనీస అర్హత పరీక్ష లేదా 7వ తరగతి — ఏది తక్కువైతే అది. నివాసం అంటే అభ్యర్థి నిజంగా నివసించిన ప్రదేశం — తల్లిదండ్రులు నివసించిన ప్రదేశం కాదు. ఏ ప్రాంతంలోనూ అర్హత పొందనివారిని రాష్ట్రంలో ఏడేళ్ల చదువు లేదా నివాసం ఆధారంగా స్థానికులుగా పరిగణించవచ్చు. రాష్ట్రం వెలుపల పనిచేసే ప్రభుత్వ ఉద్యోగుల పిల్లలకు స్థానిక ప్రాంతాన్ని ఎంచుకునేందుకు ఒక్కసారి అవకాశం ఉంటుంది.",
+          "## ఎవరికి వర్తించదు",
+          "ఏపీ సచివాలయం, శాఖాధిపతుల కార్యాలయాలు, నోటిఫై చేసిన ప్రత్యేక కార్యాలయాలు/సంస్థలు, నోటిఫై చేసిన రాష్ట్ర స్థాయి కార్యాలయాలు/సంస్థలు, రాజధాని ప్రాంత కమిషనరేట్‌లోని పోలీసు పోస్టులకు ఉత్తర్వు వర్తించదు (పేరా 14).",
+          "## ప్రస్తుత ఉద్యోగుల కేటాయింపు",
+          "ప్రస్తుత ఉద్యోగులను కొత్త కేడర్లకు కేటాయించేటప్పుడు పరిపాలనా అవసరాలు, వయస్సు మరియు సీనియారిటీ సమతుల్యత, ఆ ప్రాంతంలో సేవా కాలం, సాధ్యమైనచోట ఉద్యోగి ప్రాధాన్యం, స్థానిక భాష మరియు చట్టాలపై అవగాహనను పరిగణిస్తారు. కేటాయింపు ఉత్తర్వు అందిన అరవై రోజుల్లో ఉద్యోగి వినతి సమర్పించవచ్చు (పేరా 4). కేడర్ల ఏర్పాటుకు ముందు జరిగిన నియామకాలు, పదోన్నతులు తాత్కాలికమైనవి; కేడర్లు ఏర్పాటైన పన్నెండు నెలల్లో వాటిని సమీక్షిస్తారు (పేరా 13).",
+          "## అమలు గడువులు",
+          "15 డిసెంబర్ 2025 నుండి ఇరవై ఏడు నెలల్లో స్థానిక కేడర్లు ఏర్పాటు చేయాలని ఉత్తర్వు రాష్ట్రానికి గడువు ఇస్తుంది (పేరా 3(1)). 14 మే 2026 నాటి G.O.Ms.No.54 ద్వారా సాధారణ పరిపాలన శాఖ ప్రతి సచివాలయ శాఖను తమ అన్ని పోస్టులను జిల్లా, జోనల్, మల్టీ-జోనల్ కేడర్లుగా వర్గీకరించి, ధృవీకరించిన ప్రతిపాదనలను 25 మే 2026 లోగా ప్రధాన కార్యదర్శికి పంపాలని కోరింది. 26 జిల్లాలు, ఆరు జోన్లు, రెండు మల్టీ-జోన్ల విధానాన్ని పాటించని శాఖలు నిర్దిష్ట కారణాలు తెలపాలి."
+        ]
+      },
+      "sources": [
+        {
+          "label": {
+            "en": "Presidential Order 2025 — Gazette of India (S.O. 5777(E))",
+            "te": "రాష్ట్రపతి ఉత్తర్వు 2025 — భారత గెజిట్ (S.O. 5777(E))"
+          },
+          "url": "/documents/presidential-order-2025-gazette-of-india.pdf"
+        },
+        {
+          "label": {
+            "en": "AP Gazette republication — G.O.Ms.No.45",
+            "te": "ఏపీ గెజిట్ పునఃప్రచురణ — G.O.Ms.No.45"
+          },
+          "url": "/documents/presidential-order-2025-ap-gazette-go-ms-45.pdf"
+        },
+        {
+          "label": {
+            "en": "Instructions to departments — G.O.Ms.No.54",
+            "te": "శాఖలకు సూచనలు — G.O.Ms.No.54"
+          },
+          "url": "/documents/go-ms-54-local-cadre-instructions.pdf"
+        }
+      ]
+    },
+    {
+      "slug": "district-coordination-committees",
+      "categoryId": "campaign",
+      "date": "2026-10-05",
+      "title": {
+        "en": "District coordination committees being formed",
+        "te": "జిల్లా సమన్వయ కమిటీల ఏర్పాటు"
+      },
+      "excerpt": {
+        "en": "[Placeholder] Volunteers across districts are coordinating awareness programmes. Contact details for each district will be published once finalised.",
+        "te": "[తాత్కాలికం] జిల్లాల్లోని వాలంటీర్లు అవగాహన కార్యక్రమాలను సమన్వయం చేస్తున్నారు. ప్రతి జిల్లా సంప్రదింపు వివరాలు ఖరారు అయ్యాక ప్రచురించబడతాయి."
+      },
+      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=70",
+      "imageAlt": "A group of people in discussion",
+      "body": {
+        "en": "[Campaign update body — to be supplied.]",
+        "te": "[ఉద్యమ అప్‌డేట్ పాఠం — అందించాలి.]"
+      }
+    },
+    {
+      "slug": "october-programme-schedule",
+      "categoryId": "event",
+      "date": "2026-10-06",
+      "title": {
+        "en": "October programme schedule published",
+        "te": "అక్టోబర్ కార్యక్రమ షెడ్యూల్ ప్రచురణ"
+      },
+      "excerpt": {
+        "en": "[Placeholder] The first round of awareness programmes is scheduled for mid-October across four regions. Venues will be confirmed closer to each date.",
+        "te": "[తాత్కాలికం] మొదటి విడత అవగాహన కార్యక్రమాలు అక్టోబర్ మధ్యలో నాలుగు ప్రాంతాల్లో షెడ్యూల్ చేయబడ్డాయి. ప్రతి తేదీకి దగ్గరగా వేదికలు నిర్ధారించబడతాయి."
+      },
+      "image": "https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=900&q=70",
+      "imageAlt": "A calendar on a desk",
+      "body": {
+        "en": "[Event update body — to be supplied.]",
+        "te": "[కార్యక్రమ అప్‌డేట్ పాఠం — అందించాలి.]"
+      }
+    }
+  ],
+  "events": [
+    {
+      "slug": "awareness-meeting-north-andhra",
+      "date": "2026-10-12",
+      "time": "10:30 AM",
+      "districtId": "visakhapatnam",
+      "typeId": "awareness",
+      "title": {
+        "en": "Public Awareness Meeting",
+        "te": "ప్రజా అవగాహన సమావేశం"
+      },
+      "venue": {
+        "en": "[Venue to be announced]",
+        "te": "[వేదిక త్వరలో ప్రకటించబడుతుంది]"
+      },
+      "address": {
+        "en": "[Address placeholder — update from admin]",
+        "te": "[చిరునామా తాత్కాలికం — అడ్మిన్ నుండి అప్‌డేట్ చేయండి]"
+      },
+      "mapsQuery": "Visakhapatnam, Andhra Pradesh",
+      "description": {
+        "en": "An awareness session on the local-cadre framework and the Presidential Order 2025. Details of venue and speakers will be published here once confirmed.",
+        "te": "స్థానిక కేడర్ చట్రం మరియు రాష్ట్రపతి ఉత్తర్వు 2025పై అవగాహన సమావేశం. వేదిక మరియు వక్తల వివరాలు నిర్ధారణ అయ్యాక ఇక్కడ ప్రచురించబడతాయి."
+      },
+      "status": "upcoming"
+    },
+    {
+      "slug": "public-awareness-programme-district",
+      "date": "2026-10-13",
+      "time": "11:00 AM",
+      "districtId": "east-godavari",
+      "typeId": "public-awareness",
+      "title": {
+        "en": "Public Awareness Programme",
+        "te": "ప్రజా అవగాహన కార్యక్రమం"
+      },
+      "venue": {
+        "en": "[Venue to be announced]",
+        "te": "[వేదిక త్వరలో ప్రకటించబడుతుంది]"
+      },
+      "address": {
+        "en": "[Address placeholder — update from admin]",
+        "te": "[చిరునామా తాత్కాలికం — అడ్మిన్ నుండి అప్‌డేట్ చేయండి]"
+      },
+      "mapsQuery": "Rajamahendravaram, Andhra Pradesh",
+      "description": {
+        "en": "Programme covering constitutional rights and employment-related concerns. Venue and timing will be confirmed by the organising committee.",
+        "te": "రాజ్యాంగ హక్కులు మరియు ఉద్యోగ సంబంధిత ఆందోళనలపై కార్యక్రమం. వేదిక మరియు సమయాన్ని నిర్వాహక కమిటీ నిర్ధారిస్తుంది."
+      },
+      "status": "upcoming"
+    },
+    {
+      "slug": "campaign-meeting-district",
+      "date": "2026-10-14",
+      "time": "04:00 PM",
+      "districtId": "ntr",
+      "typeId": "campaign",
+      "title": {
+        "en": "Campaign Coordination Meeting",
+        "te": "ఉద్యమ సమన్వయ సమావేశం"
+      },
+      "venue": {
+        "en": "[Venue to be announced]",
+        "te": "[వేదిక త్వరలో ప్రకటించబడుతుంది]"
+      },
+      "address": {
+        "en": "[Address placeholder — update from admin]",
+        "te": "[చిరునామా తాత్కాలికం — అడ్మిన్ నుండి అప్‌డేట్ చేయండి]"
+      },
+      "mapsQuery": "Vijayawada, Andhra Pradesh",
+      "description": {
+        "en": "Coordination meeting for district volunteers and committee members. Agenda and venue will be shared through official channels.",
+        "te": "జిల్లా వాలంటీర్లు మరియు కమిటీ సభ్యుల సమన్వయ సమావేశం. అజెండా మరియు వేదిక అధికారిక మార్గాల ద్వారా తెలియజేయబడతాయి."
+      },
+      "status": "upcoming"
+    },
+    {
+      "slug": "public-meeting-district",
+      "date": "2026-10-15",
+      "time": "05:30 PM",
+      "districtId": "kurnool",
+      "typeId": "public",
+      "title": {
+        "en": "Public Meeting",
+        "te": "బహిరంగ సభ"
+      },
+      "venue": {
+        "en": "[Venue to be announced]",
+        "te": "[వేదిక త్వరలో ప్రకటించబడుతుంది]"
+      },
+      "address": {
+        "en": "[Address placeholder — update from admin]",
+        "te": "[చిరునామా తాత్కాలికం — అడ్మిన్ నుండి అప్‌డేట్ చేయండి]"
+      },
+      "mapsQuery": "Kurnool, Andhra Pradesh",
+      "description": {
+        "en": "Open public meeting. Participation details and venue confirmation will be posted here.",
+        "te": "బహిరంగ ప్రజా సభ. పాల్గొనే వివరాలు మరియు వేదిక నిర్ధారణ ఇక్కడ పోస్ట్ చేయబడతాయి."
+      },
+      "status": "upcoming"
+    }
+  ],
+  "documents": [
+    {
+      "categoryId": "order-2025",
+      "title": {
+        "en": "Presidential Order 2025 — Gazette of India (S.O. 5777(E))",
+        "te": "రాష్ట్రపతి ఉత్తర్వు 2025 — భారత గెజిట్ (S.O. 5777(E))"
+      },
+      "date": "2025-12-15",
+      "description": {
+        "en": "The Andhra Pradesh Public Employment (Organisation of Local Cadres and Regulation of Direct Recruitment) Order, 2025, issued by the Ministry of Home Affairs under Article 371D. Published in the Gazette of India: Extraordinary, Part II, Sec. 3(ii). Supersedes the 1975 Order. Hindi and English text.",
+        "te": "అధికరణ 371D కింద కేంద్ర హోం మంత్రిత్వ శాఖ జారీ చేసిన ఆంధ్రప్రదేశ్ ప్రభుత్వ ఉద్యోగ (స్థానిక కేడర్ల ఏర్పాటు మరియు ప్రత్యక్ష నియామకాల నియంత్రణ) ఉత్తర్వు, 2025. భారత గెజిట్: అసాధారణ, భాగం II, సెక్షన్ 3(ii)లో ప్రచురితం. 1975 ఉత్తర్వును రద్దు చేస్తుంది. హిందీ మరియు ఆంగ్ల పాఠం."
+      },
+      "url": "/documents/presidential-order-2025-gazette-of-india.pdf",
+      "size": "0.6 MB",
+      "official": true
+    },
+    {
+      "categoryId": "order-2025",
+      "title": {
+        "en": "Presidential Order 2025 — AP Gazette republication (G.O.Ms.No.45)",
+        "te": "రాష్ట్రపతి ఉత్తర్వు 2025 — ఏపీ గెజిట్ పునఃప్రచురణ (G.O.Ms.No.45)"
+      },
+      "date": "2026-04-20",
+      "description": {
+        "en": "G.O.Ms.No.45, General Administration (SPF&MC) Department, dated 20-04-2026. Republishes the full text of the Presidential Order 2025 in the Andhra Pradesh Gazette (Part-I Extraordinary No. 197, Amaravati).",
+        "te": "G.O.Ms.No.45, సాధారణ పరిపాలన (SPF&MC) శాఖ, తేదీ 20-04-2026. రాష్ట్రపతి ఉత్తర్వు 2025 పూర్తి పాఠాన్ని ఆంధ్రప్రదేశ్ గెజిట్‌లో (భాగం-I అసాధారణ నం. 197, అమరావతి) పునఃప్రచురిస్తుంది."
+      },
+      "url": "/documents/presidential-order-2025-ap-gazette-go-ms-45.pdf",
+      "size": "0.4 MB",
+      "official": true
+    },
+    {
+      "categoryId": "gos",
+      "title": {
+        "en": "G.O.Ms.No.54 — Instructions to organise local cadres",
+        "te": "G.O.Ms.No.54 — స్థానిక కేడర్ల ఏర్పాటుకు సూచనలు"
+      },
+      "date": "2026-05-14",
+      "description": {
+        "en": "G.O.Ms.No.54, General Administration (SPF&MC) Department, dated 14-05-2026. Summarises the district, zonal and multi-zonal cadre structure and directs all Secretariat Departments to submit proposals in the prescribed formats by 25-05-2026.",
+        "te": "G.O.Ms.No.54, సాధారణ పరిపాలన (SPF&MC) శాఖ, తేదీ 14-05-2026. జిల్లా, జోనల్, మల్టీ-జోనల్ కేడర్ నిర్మాణాన్ని సంగ్రహించి, అన్ని సచివాలయ శాఖలు నిర్దేశిత ఫార్మాట్లలో 25-05-2026 లోగా ప్రతిపాదనలు సమర్పించాలని ఆదేశిస్తుంది."
+      },
+      "url": "/documents/go-ms-54-local-cadre-instructions.pdf",
+      "size": "0.5 MB",
+      "official": true
+    },
+    {
+      "categoryId": "apgea",
+      "title": {
+        "en": "APGEA Statement on the Presidential Order 2025",
+        "te": "రాష్ట్రపతి ఉత్తర్వు 2025పై APGEA ప్రకటన"
+      },
+      "date": "2026-09-01",
+      "description": {
+        "en": "[Placeholder] Statement issued by the AP Government Employees Association. Represents the association’s position.",
+        "te": "[తాత్కాలికం] ఏపీ ప్రభుత్వ ఉద్యోగుల సంఘం జారీ చేసిన ప్రకటన. సంఘం వైఖరిని సూచిస్తుంది."
+      },
+      "url": "#",
+      "size": "— MB",
+      "official": false
+    },
+    {
+      "categoryId": "representations",
+      "title": {
+        "en": "Representation submitted to the Government",
+        "te": "ప్రభుత్వానికి సమర్పించిన వినతి"
+      },
+      "date": "2026-09-15",
+      "description": {
+        "en": "[Placeholder] Copy of the representation submitted on behalf of employees and stakeholders.",
+        "te": "[తాత్కాలికం] ఉద్యోగులు మరియు భాగస్వాముల తరఫున సమర్పించిన వినతి ప్రతి."
+      },
+      "url": "#",
+      "size": "— MB",
+      "official": false
+    },
+    {
+      "categoryId": "press",
+      "title": {
+        "en": "Campaign Launch Press Release",
+        "te": "ఉద్యమ ప్రారంభ పత్రికా ప్రకటన"
+      },
+      "date": "2026-10-01",
+      "description": {
+        "en": "[Placeholder] Press release announcing the Jago Andhra awareness campaign.",
+        "te": "[తాత్కాలికం] జాగో ఆంధ్ర అవగాహన ఉద్యమాన్ని ప్రకటించే పత్రికా ప్రకటన."
+      },
+      "url": "#",
+      "size": "— MB",
+      "official": false
+    },
+    {
+      "categoryId": "notices",
+      "title": {
+        "en": "Public Notice — October Programmes",
+        "te": "ప్రజా నోటీసు — అక్టోబర్ కార్యక్రమాలు"
+      },
+      "date": "2026-10-06",
+      "description": {
+        "en": "[Placeholder] Notice listing the October awareness programme schedule.",
+        "te": "[తాత్కాలికం] అక్టోబర్ అవగాహన కార్యక్రమ షెడ్యూల్ నోటీసు."
+      },
+      "url": "#",
+      "size": "— MB",
+      "official": false
+    }
+  ]
+}

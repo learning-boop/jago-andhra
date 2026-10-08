@@ -5,13 +5,10 @@
  * directly. To go live, set VITE_API_BASE_URL in .env — every function will
  * then call the PHP API (expected to return JSON in the same shapes as src/data/*).
  *
- * Expected PHP endpoints (adjust `endpoints` below if your routes differ):
+ * PHP endpoints (implemented in /backend — see backend/README.md):
  *   GET  /events.php            → Event[]
  *   GET  /updates.php           → Update[]
  *   GET  /documents.php         → Document[]
- *   GET  /gallery.php           → GalleryItem[]
- *   GET  /media.php             → MediaItem[]
- *   GET  /districts.php         → District[]
  *   POST /members.php           → { ok: true, id }
  *   POST /contact.php           → { ok: true, id }
  *   GET  /votes.php             → { up, down }
@@ -24,16 +21,16 @@ import { gallery } from '../data/gallery';
 import { media } from '../data/media';
 import { districts } from '../data/districts';
 
-const BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
-const USE_API = Boolean(BASE_URL);
+export const BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+export const USE_API = Boolean(BASE_URL);
+
+/** Content managed through the backend admin; gallery, media and districts stay in src/data. */
+const FROM_API = ['events', 'updates', 'documents'];
 
 const endpoints = {
   events: '/events.php',
   updates: '/updates.php',
   documents: '/documents.php',
-  gallery: '/gallery.php',
-  media: '/media.php',
-  districts: '/districts.php',
   members: '/members.php',
   contact: '/contact.php',
   votes: '/votes.php',
@@ -41,14 +38,17 @@ const endpoints = {
 
 const mock = { events, updates, documents, gallery, media, districts };
 
-async function request(path, options = {}) {
+export async function request(path, options = {}) {
   const res = await fetch(`${BASE_URL}${path}`, {
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     ...options,
+    // Content-Type only when sending JSON, so simple GETs skip the CORS preflight
+    headers: { Accept: 'application/json', ...(typeof options.body === 'string' && { 'Content-Type': 'application/json' }), ...options.headers },
   });
   if (!res.ok) {
-    const text = await res.text().catch(() => '');
-    throw new Error(`API ${res.status}: ${text || res.statusText}`);
+    const data = await res.json().catch(() => null);
+    const err = new Error(data?.error || `API ${res.status}: ${res.statusText}`);
+    err.status = res.status;
+    throw err;
   }
   return res.json();
 }
@@ -62,7 +62,7 @@ function mockVotes() {
 const simulate = (data, ms = 120) => new Promise((r) => setTimeout(() => r(structuredClone(data)), ms));
 
 function list(key) {
-  return USE_API ? request(endpoints[key]) : simulate(mock[key]);
+  return USE_API && FROM_API.includes(key) ? request(endpoints[key]) : simulate(mock[key]);
 }
 
 export const api = {
@@ -106,7 +106,7 @@ export const api = {
  * MediaItem    { id, categoryId, title:L, duration, youtubeId, thumbnail, description:L }
  * District     { id, name:L, region('north'|'godavari'|'central'|'south'|'rayalaseema'), contact{name,phone,email} }
  *               (map shapes/coords are static in src/data/apMap.js, keyed by the same id)
- * Member       { fullName, mobile, email, district, message, consent }
+ * Member       { fullName, mobile, email, age, profession, district, address, message, consent }
  * ContactMsg   { name, email, phone, message }
  * Votes        { up: number, down: number }
  */

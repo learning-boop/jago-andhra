@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -16,6 +16,9 @@ import ContactPage from './pages/ContactPage';
 import Legal from './pages/Legal';
 import NotFound from './pages/NotFound';
 import { useLang } from './i18n/LanguageContext';
+
+// Admin area is loaded only when /admin is opened, so public visitors never download it.
+const AdminApp = lazy(() => import('./admin/AdminApp'));
 
 const titles = {
   en: { '/': 'Jago Andhra | A Movement for a Constitutional Andhra Pradesh', '/about': 'About | Jago Andhra', '/issue': 'The Issue | Jago Andhra', '/events': 'Events & Programmes | Jago Andhra', '/updates': 'Latest Updates | Jago Andhra', '/documents': 'Documents & Resources | Jago Andhra', '/contact': 'Contact | Jago Andhra' },
@@ -52,6 +55,9 @@ const pageMotion = {
 
 export default function App() {
   const location = useLocation();
+  if (location.pathname === '/admin' || location.pathname.startsWith('/admin/')) {
+    return <Suspense fallback={null}><AdminApp /></Suspense>;
+  }
   return (
     <JoinProvider>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand-orange focus:px-4 focus:py-2 focus:text-white">

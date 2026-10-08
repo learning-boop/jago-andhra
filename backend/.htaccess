@@ -1,0 +1,15 @@
+# Jago Andhra backend (Apache)
+Options -Indexes
+
+# Pass the Authorization header through to PHP (needed for admin login tokens)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
+# Never serve configuration, schema or seed data
+<FilesMatch "^(config\.php|config\.sample\.php|schema\.sql|seed\.json|README\.md)$">
+  Require all denied
+</FilesMatch>

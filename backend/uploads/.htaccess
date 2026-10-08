@@ -1,0 +1,17 @@
+# Uploaded PDFs only: never execute scripts here
+Options -Indexes
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+  php_flag engine off
+</IfModule>
+<FilesMatch "\.(?i:php\d?|phtml|phar|phps|cgi|pl|py|sh)$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_headers.c>
+  <FilesMatch "\.pdf$">
+    Header set Content-Type "application/pdf"
+    Header set X-Content-Type-Options "nosniff"
+  </FilesMatch>
+</IfModule>

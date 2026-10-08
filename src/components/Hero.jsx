@@ -5,7 +5,7 @@ import { ChevronDown } from 'lucide-react';
 import { apOutlinePath, AP_VIEWBOX } from '../data/apMap';
 import { useLang } from '../i18n/LanguageContext';
 import HeroLogo from './HeroLogo';
-import { useJoin } from './JoinModal';
+import { useJoin } from './joinContext';
 
 const textReveal = {
   hidden: { opacity: 0, y: 40 },

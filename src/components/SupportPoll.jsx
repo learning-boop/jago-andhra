@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Check, ThumbsDown, ThumbsUp, X } from 'lucide-react';
 import { api } from '../services/api';
 import { useLang } from '../i18n/LanguageContext';
-import { useJoin } from './JoinModal';
+import { useJoin } from './joinContext';
 
 const VOTED_KEY = 'jago-andhra-voted';
 const SCROLL_TRIGGER = 0.2; // open once the visitor has scrolled through 20% of the page

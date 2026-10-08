@@ -1,10 +1,9 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useLang } from '../i18n/LanguageContext';
 import JoinForm from './JoinForm';
-
-const JoinContext = createContext(null);
+import { JoinContext } from './joinContext';
 
 /** Provides openJoin() to every "Join the Movement" button and renders the popup form. */
 export function JoinProvider({ children }) {
@@ -18,12 +17,6 @@ export function JoinProvider({ children }) {
       <JoinModal open={open} onClose={closeJoin} />
     </JoinContext.Provider>
   );
-}
-
-export function useJoin() {
-  const ctx = useContext(JoinContext);
-  if (!ctx) throw new Error('useJoin must be used inside <JoinProvider>');
-  return ctx;
 }
 
 function JoinModal({ open, onClose }) {
