@@ -9,7 +9,6 @@ import Updates from '../components/Updates';
 import Media from '../components/Media';
 import Gallery from '../components/Gallery';
 import Documents from '../components/Documents';
-import JoinMovement from '../components/JoinMovement';
 import SocialMedia from '../components/SocialMedia';
 import Contact from '../components/Contact';
 
@@ -27,7 +26,6 @@ export default function Home() {
       <Media />
       <Gallery />
       <Documents compact />
-      <JoinMovement />
       <SocialMedia />
       <Contact />
     </>

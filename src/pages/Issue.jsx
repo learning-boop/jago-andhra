@@ -2,7 +2,6 @@ import PageHeader from '../components/PageHeader';
 import IssueTimeline from '../components/IssueTimeline';
 import Order2025 from '../components/Order2025';
 import Documents from '../components/Documents';
-import JoinMovement from '../components/JoinMovement';
 import { Reveal, PositionTag } from '../components/ui';
 import { faqs } from '../data/site';
 import { useLang } from '../i18n/LanguageContext';
@@ -28,7 +27,6 @@ export default function Issue() {
         </div>
       </section>
       <Documents />
-      <JoinMovement />
     </>
   );
 }
