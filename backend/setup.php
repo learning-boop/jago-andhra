@@ -44,16 +44,38 @@ function import_seed(): int
     return $n;
 }
 
+/** Plain-language reason when MySQL refuses the connection (no secrets shown). */
+function db_problem(): string
+{
+    try {
+        db();
+        return '';
+    } catch (PDOException $e) {
+        $code = (int) ($e->errorInfo[1] ?? $e->getCode());
+        $hints = [
+            1045 => 'MySQL rejected the username or password. In config.php check db_user and db_pass (cPanel names look like cpuser_jago), and that the user is added to the database with ALL PRIVILEGES.',
+            1044 => 'The MySQL user is not allowed to use this database. In cPanel → MySQL Databases → Add User To Database, tick ALL PRIVILEGES.',
+            1049 => 'The database name in db_dsn does not exist. Copy the exact name from cPanel → MySQL Databases (it starts with your cPanel username, e.g. cpuser_jago).',
+            2002 => 'Cannot reach the MySQL server. In db_dsn use host=localhost (or the host your provider gives).',
+            2006 => 'Cannot reach the MySQL server. In db_dsn use host=localhost (or the host your provider gives).',
+        ];
+        return ($hints[$code] ?? 'Cannot connect to the database. Check db_dsn, db_user and db_pass in config.php.') . " (MySQL error $code)";
+    }
+}
+
 $error = '';
 $done = null;
-if (admin_exists()) {
+$dbProblem = db_problem();
+if ($dbProblem) {
+    $error = $dbProblem;
+} elseif (admin_exists()) {
     $done = 'already';
 } elseif (method() === 'POST') {
     $key = (string) ($_POST['setup_key'] ?? '');
     $email = strtolower(trim((string) ($_POST['email'] ?? '')));
     $pass = (string) ($_POST['password'] ?? '');
     $configured = (string) cfg('setup_key', '');
-    if ($configured === '' || str_starts_with($configured, 'replace-with') || !hash_equals($configured, $key)) {
+    if ($configured === '' || strpos($configured, 'replace-with') === 0 || !hash_equals($configured, $key)) {
         $error = 'Setup key is wrong (or still the sample value in config.php).';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = 'Enter a valid email address.';
@@ -62,11 +84,22 @@ if (admin_exists()) {
     } elseif ($pass !== ($_POST['password2'] ?? '')) {
         $error = 'The two passwords do not match.';
     } else {
-        create_tables();
-        $imported = import_seed();
-        db()->prepare('INSERT INTO admins (email, password_hash, created_at) VALUES (?, ?, ?)')
-            ->execute([$email, password_hash($pass, PASSWORD_DEFAULT), now()]);
-        $done = "Admin account created for $email. Imported $imported content items.";
+        // Only reached with the correct setup key, so the real reason can be shown to fix it.
+        $step = 'connecting to the database';
+        try {
+            db();
+            $step = 'creating the tables';
+            create_tables();
+            $step = 'importing the website content (seed.json)';
+            $imported = import_seed();
+            $step = 'creating the admin account';
+            db()->prepare('INSERT INTO admins (email, password_hash, created_at) VALUES (?, ?, ?)')
+                ->execute([$email, password_hash($pass, PASSWORD_DEFAULT), now()]);
+            $done = "Admin account created for $email. Imported $imported content items.";
+        } catch (Throwable $e) {
+            error_log('[jago-andhra setup] ' . $step . ': ' . $e->getMessage());
+            $error = "Setup stopped while $step: " . $e->getMessage();
+        }
     }
 }
 $h = fn ($s) => htmlspecialchars((string) $s, ENT_QUOTES);

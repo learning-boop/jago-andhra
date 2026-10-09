@@ -34,7 +34,7 @@ function ScrollManager() {
     document.title = titles[lang][pathname] || titles[lang]['/'];
   }, [pathname, lang]);
   useEffect(() => {
-    document.querySelector('link[rel="canonical"]')?.setAttribute('href', `https://jagoandhra.org${pathname === '/' ? '/' : pathname}`);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', `https://jagoandhra.com${pathname === '/' ? '/' : pathname}`);
     if (hash) {
       const el = document.querySelector(hash);
       if (el) {

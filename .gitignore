@@ -8,3 +8,6 @@ dist
 backend/config.php
 backend/uploads/*.pdf
 backend/*.sqlite
+
+# cPanel deploy package (npm run package:cpanel)
+deploy/

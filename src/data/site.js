@@ -5,11 +5,11 @@
  */
 export const siteConfig = {
   name: 'Jago Andhra',
-  url: 'https://jagoandhra.org',
+  url: 'https://jagoandhra.com',
   contact: {
     address: { en: '[Office address placeholder]\nVijayawada, Andhra Pradesh, India', te: '[కార్యాలయ చిరునామా తాత్కాలికం]\nవిజయవాడ, ఆంధ్రప్రదేశ్, భారతదేశం' },
     phone: '+91 XXXXX XXXXX',
-    email: 'info@jagoandhra.org',
+    email: 'info@jagoandhra.com',
     hours: { en: 'Mon – Sat, 10:00 AM – 6:00 PM IST', te: 'సోమ – శని, ఉ. 10:00 – సా. 6:00 IST' },
     mapsEmbedQuery: 'Vijayawada, Andhra Pradesh',
   },

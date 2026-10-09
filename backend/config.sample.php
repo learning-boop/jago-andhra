@@ -9,10 +9,11 @@ return [
     'db_user' => 'jago_user',
     'db_pass' => 'change-me',
 
-    // Website origins allowed to call this API (your Vercel / custom domains).
+    // Website origins allowed to call this API from ANOTHER domain (e.g. a Vercel site).
+    // Not needed when the website and this backend are on the same domain (cPanel: public_html + public_html/api).
     'allowed_origins' => [
-        'https://jagoandhra.org',
-        'https://www.jagoandhra.org',
+        'https://jagoandhra.com',
+        'https://www.jagoandhra.com',
     ],
 
     // Long random string used to hash visitor IPs (votes, login rate limit).
@@ -22,8 +23,9 @@ return [
     // One-time key needed to open setup.php. Choose any long value, use it once, then delete setup.php.
     'setup_key' => 'replace-with-another-long-random-string',
 
-    // Public URL of this backend folder, used for uploaded document links.
-    'public_url' => 'https://api.jagoandhra.org',
+    // Public URL of this backend folder, used for uploaded PDF and photo links.
+    // Same domain (cPanel, backend in public_html/api): '/api'. Separate domain: 'https://api.jagoandhra.com'.
+    'public_url' => '/api',
 
     // Admin login lifetime in hours.
     'token_hours' => 12,

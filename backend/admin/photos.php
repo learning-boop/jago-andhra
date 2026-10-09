@@ -34,11 +34,9 @@ foreach ($files['name'] as $i => $origName) {
     if (!in_array($type, [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_WEBP], true)) { $errors[] = "$label: only JPEG, PNG or WebP photos are allowed."; continue; }
     if ($info[0] * $info[1] > 50_000_000) { $errors[] = "$label: image is too large (over 50 megapixels)."; continue; }
 
-    $img = match ($type) {
-        IMAGETYPE_JPEG => @imagecreatefromjpeg($tmp),
-        IMAGETYPE_PNG => @imagecreatefrompng($tmp),
-        IMAGETYPE_WEBP => @imagecreatefromwebp($tmp),
-    };
+    if ($type === IMAGETYPE_JPEG) $img = @imagecreatefromjpeg($tmp);
+    elseif ($type === IMAGETYPE_PNG) $img = @imagecreatefrompng($tmp);
+    else $img = @imagecreatefromwebp($tmp);
     if (!$img) { $errors[] = "$label: could not read the image."; continue; }
     if ($type === IMAGETYPE_JPEG) $img = upright($img, $tmp);
 

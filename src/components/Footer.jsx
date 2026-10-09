@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Lock } from 'lucide-react';
 import { siteConfig } from '../data/site';
 import { socialIcons } from './SocialMedia';
 import { useLang } from '../i18n/LanguageContext';
@@ -55,12 +56,14 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-x flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/45 sm:flex-row">
+        {/* pb-28 keeps these links clear of the floating support-poll button (bottom-right) */}
+        <div className="container-x flex flex-col items-center justify-between gap-3 pb-28 pt-6 text-xs text-white/45 sm:flex-row">
           <p>{t('footer.rights')}</p>
           <ul className="flex gap-5">
             <li><Link to="/privacy" className="hover:text-white">{t('footer.privacy')}</Link></li>
             <li><Link to="/terms" className="hover:text-white">{t('footer.terms')}</Link></li>
             <li><Link to="/disclaimer" className="hover:text-white">{t('footer.disclaimer')}</Link></li>
+            <li><Link to="/admin" rel="nofollow" className="inline-flex items-center gap-1 hover:text-white"><Lock size={11} aria-hidden="true" /> {t('footer.admin')}</Link></li>
           </ul>
         </div>
       </div>

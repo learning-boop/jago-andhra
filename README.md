@@ -18,7 +18,7 @@ npm run preview   # preview the production build
 1. Push this folder to a Git repo and import it in Vercel.
 2. Framework preset: **Vite** (auto-detected). Build command `npm run build`, output `dist`.
 3. `vercel.json` already rewrites all routes to `index.html` so React Router deep links work.
-4. Update the domain in `index.html` (canonical / OG URLs), `public/robots.txt` and `public/sitemap.xml` if not `jagoandhra.org`.
+4. Update the domain in `index.html` (canonical / OG URLs), `public/robots.txt` and `public/sitemap.xml` if not `jagoandhra.com`.
 
 ## Languages (English / Telugu)
 
